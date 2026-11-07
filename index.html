@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Ibrahim Mohammed | General Practitioner, Health Informatics Lead & Clinical AI Specialist</title>
+  <meta name="description" content="Portfolio of Dr. Ibrahim Mohammed: General Practitioner, Health Informatics Lead, and Clinical AI & Model Evaluation Specialist bridging clinical medicine, RLHF, EHR optimization, and medical telemetry." />
+  
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:title" content="Dr. Ibrahim Mohammed | Clinical AI & Health Informatics Portfolio" />
+  <meta property="og:description" content="Multidisciplinary General Practitioner and Technologist specializing in Clinical AI Auditing (RLHF), Health Informatics, EHR Optimization, and Diabetes Telemetry Systems." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- Google Fonts: Inter & Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN with customized theme config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              cyan: '#06b6d4',
+              teal: '#14b8a6',
+              emerald: '#10b981',
+              dark: '#0B0F17',
+              surface: '#111827',
+              border: 'rgba(30, 41, 59, 0.8)',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'telemetry-wave': 'ecg 2.5s linear infinite',
+          },
+          keyframes: {
+            ecg: {
+              '0%': { strokeDashoffset: '1000' },
+              '100%': { strokeDashoffset: '0' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom clinical dark styling */
+    body {
+      background-color: #070B12;
+      color: #E2E8F0;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    /* Ambient background grid */
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    .glow-cyan {
+      box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.25);
+    }
+
+    .glow-emerald {
+      box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.25);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0E7490;
+    }
+
+    /* ECG pulse animation line */
+    .ecg-line {
+      stroke-dasharray: 600;
+      animation: ecgStroke 4s ease-in-out infinite;
+    }
+
+    @keyframes ecgStroke {
+      0% {
+        stroke-dashoffset: 600;
+      }
+      50% {
+        stroke-dashoffset: 0;
+      }
+      100% {
+        stroke-dashoffset: -600;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#070B12] text-slate-200 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Ambient Light Orbs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <div class="absolute -top-32 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[128px]"></div>
+    <div class="absolute top-1/3 -right-32 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[140px]"></div>
+    <div class="absolute bottom-10 left-1/3 w-[550px] h-[550px] bg-emerald-500/8 rounded-full blur-[140px]"></div>
+    <div class="absolute inset-0 bg-grid-pattern opacity-60"></div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none" aria-live="polite"></div>
+
+  <!-- Sticky Top Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#070B12]/85 border-b border-slate-800/80 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand / Identity -->
+        <a href="#hero" class="flex items-center gap-3.5 group" aria-label="Dr. Ibrahim Mohammed - Home">
+          <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500/20 via-slate-800 to-teal-500/20 p-[1px] border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+            <div class="w-full h-full rounded-[11px] bg-[#0B0F17] flex items-center justify-center">
+              <svg class="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-heading font-bold text-lg text-white tracking-tight group-hover:text-cyan-300 transition-colors">Dr. Ibrahim Mohammed</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-800/60 font-mono">MD • MSc</span>
+            </div>
+            <p class="text-xs text-slate-400 tracking-wide">Clinical AI & Health Informatics</p>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1.5 lg:gap-2" aria-label="Main Navigation">
+          <a href="#about" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">About</a>
+          <a href="#competencies" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Competencies</a>
+          <a href="#projects" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Case Studies</a>
+          <a href="#experience" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Experience</a>
+          <a href="#credentials" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Credentials</a>
+          <a href="#contact" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">Contact</a>
+        </nav>
+
+        <!-- Right Quick Actions -->
+        <div class="hidden sm:flex items-center gap-3">
+          <button id="open-cv-modal-btn" type="button" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-colors" aria-label="Preview and download CV">
+            <svg class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>CV</span>
+          </button>
+          
+          <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-300 hover:to-teal-300 shadow-md shadow-cyan-500/20 transition-all transform active:scale-95">
+            <span>Get in Touch</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex items-center sm:hidden">
+          <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+            <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden sm:hidden border-b border-slate-800 bg-[#0B0F17]/95 px-4 pt-2 pb-6 space-y-2 backdrop-blur-xl">
+      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-cyan-400">About & Overview</a>
+      <a href="#competencies" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-cyan-400">Core Competencies</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-cyan-400">Featured Projects</a>
+      <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-cyan-400">Professional Experience</a>
+      <a href="#credentials" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-cyan-400">Education & Certifications</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-cyan-400">Contact Dr. Mohammed</a>
+      
+      <div class="pt-4 flex flex-col gap-2">
+        <button id="mobile-cv-btn" type="button" class="w-full text-center px-4 py-2.5 rounded-lg text-sm font-medium text-slate-200 bg-slate-800 border border-slate-700">
+          View & Download CV
+        </button>
+        <a href="#contact" class="w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-400">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="relative z-10">
+
+    <!-- 1. Hero Section -->
+    <section id="hero" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden border-b border-slate-800/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Left Column: Biography & Value Proposition -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Real-time Availability & Overlap Badge -->
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 shadow-sm">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </span>
+              <span class="text-xs font-medium text-slate-300">
+                Available for Clinical AI Advisory & Informatics Leadership
+              </span>
+            </div>
+
+            <!-- Main Heading & Title -->
+            <div class="space-y-3">
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-[1.1]">
+                Dr. Ibrahim <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">Mohammed</span>
+              </h1>
+              
+              <div class="flex flex-wrap items-center gap-2 pt-1">
+                <span class="text-lg sm:text-xl font-semibold text-cyan-300">General Practitioner</span>
+                <span class="text-slate-600 font-bold hidden sm:inline">•</span>
+                <span class="text-lg sm:text-xl font-semibold text-teal-300">Health Informatics Lead</span>
+                <span class="text-slate-600 font-bold hidden sm:inline">•</span>
+                <span class="text-lg sm:text-xl font-semibold text-emerald-300">Clinical AI & Model Evaluation Specialist</span>
+              </div>
+            </div>
+
+            <!-- Tagline -->
+            <p class="text-base sm:text-lg text-slate-300/90 leading-relaxed max-w-2xl">
+              Bridging frontline clinical care with enterprise software engineering, clinical AI auditing (RLHF), EHR optimization, and continuous diabetes telemetry systems.
+            </p>
+
+            <!-- Location & Remote Overlap Pill -->
+            <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-400 py-1">
+              <div class="flex items-center gap-2 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-800">
+                <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Warri, Delta State, Nigeria</span>
+              </div>
+
+              <div class="flex items-center gap-2 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-800">
+                <svg class="w-4 h-4 text-teal-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Global Remote (UTC+1 | US EST/PST & EMEA Overlap)</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="mailto:ibrahimmohammedevuti@gmail.com" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-base font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 shadow-lg shadow-cyan-500/25 transition-all transform active:scale-95">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Get in Touch</span>
+              </a>
+
+              <a href="/assets/aistudio/Ibrahim_Mohammed_-_Clinical_and_Health_Informatics_AI_Resume_d47b0aec.pdf" download="Dr_Ibrahim_Mohammed_CV.pdf" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-base font-semibold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/60 shadow-sm transition-all">
+                <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>Download CV (PDF)</span>
+              </a>
+
+              <button type="button" onclick="openCvModal()" class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 transition-colors">
+                <svg class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <span>Preview CV</span>
+              </button>
+            </div>
+
+            <!-- Direct Contact Quick Strip -->
+            <div class="pt-3 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
+              <div class="flex items-center gap-2">
+                <span class="text-slate-500">Email:</span>
+                <span class="text-slate-300">ibrahimmohammedevuti@gmail.com</span>
+                <button type="button" onclick="copyToClipboard('ibrahimmohammedevuti@gmail.com', 'Email copied to clipboard!')" class="text-cyan-400 hover:text-cyan-300 p-1 hover:bg-slate-800 rounded transition-colors" title="Copy email address" aria-label="Copy email address">
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </button>
+              </div>
+
+              <span class="text-slate-700 hidden sm:inline">|</span>
+
+              <div class="flex items-center gap-2">
+                <span class="text-slate-500">Tel:</span>
+                <a href="tel:+18147132665" class="text-slate-300 hover:text-cyan-300 transition-colors">+1-814-713-2665</a>
+                <span class="text-slate-600">/</span>
+                <a href="tel:+2347032553907" class="text-slate-300 hover:text-cyan-300 transition-colors">+234-070-3255-3907</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive Clinical & Informatics HUD Card -->
+          <div class="lg:col-span-5">
+            <div class="relative rounded-2xl bg-gradient-to-b from-slate-800/90 via-slate-900/95 to-[#0B0F17] p-6 border border-slate-700/80 shadow-2xl glow-cyan">
+              
+              <!-- HUD Top Bar -->
+              <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                  <span class="font-mono text-xs text-slate-300 font-semibold tracking-wide">CLINICAL TELEMETRY & AI AUDIT FEED</span>
+                </div>
+                <div class="flex items-center gap-1.5 font-mono text-[11px] text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/50">
+                  <span class="animate-pulse">●</span> LIVE
+                </div>
+              </div>
+
+              <!-- Animated ECG Waveform Monitor -->
+              <div class="py-4">
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                  <span>Continuous Telemetry Stream</span>
+                  <span class="font-mono text-emerald-400">98.6% Factuality Adherence</span>
+                </div>
+                <div class="w-full h-14 bg-slate-950/80 rounded-lg p-2 border border-slate-800 flex items-center overflow-hidden relative">
+                  <svg class="w-full h-10 text-cyan-400" viewBox="0 0 500 50" fill="none" preserveAspectRatio="none">
+                    <path class="ecg-line" d="M0 25 L80 25 L95 10 L110 40 L125 5 L140 38 L155 25 L240 25 L255 8 L270 42 L285 2 L300 40 L315 25 L410 25 L425 12 L440 38 L455 25 L500 25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- 4 Clinical AI & Engineering Pillars Grid -->
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-cyan-500/40 transition-colors">
+                  <div class="flex items-center gap-2 text-cyan-400 mb-1">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    <span class="text-xs font-semibold text-slate-300">RLHF & Auditing</span>
+                  </div>
+                  <div class="text-xl font-heading font-bold text-white">450+</div>
+                  <p class="text-[11px] text-slate-400">Clinical rubrics authored</p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-teal-500/40 transition-colors">
+                  <div class="flex items-center gap-2 text-teal-400 mb-1">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                    <span class="text-xs font-semibold text-slate-300">Dual Credentials</span>
+                  </div>
+                  <div class="text-xl font-heading font-bold text-white">MD + MSc</div>
+                  <p class="text-[11px] text-slate-400">Clinical & Tech Honors</p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-emerald-500/40 transition-colors">
+                  <div class="flex items-center gap-2 text-emerald-400 mb-1">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    <span class="text-xs font-semibold text-slate-300">CGM Telemetry</span>
+                  </div>
+                  <div class="text-xl font-heading font-bold text-white">Real-Time</div>
+                  <p class="text-[11px] text-slate-400">Glucose & ketone ingestion</p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-cyan-500/40 transition-colors">
+                  <div class="flex items-center gap-2 text-cyan-400 mb-1">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    <span class="text-xs font-semibold text-slate-300">Security & RBAC</span>
+                  </div>
+                  <div class="text-xl font-heading font-bold text-white">CEH / PMP</div>
+                  <p class="text-[11px] text-slate-400">Zero-trust EHR pipelines</p>
+                </div>
+              </div>
+
+              <!-- HUD Bottom Quote / Summary -->
+              <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                <span class="italic">"Eliminating medical AI hallucination at the clinical interface."</span>
+                <span class="text-emerald-400 font-mono">GP #Verified</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Professional Summary & Bio Section -->
+    <section id="about" class="py-16 md:py-24 border-b border-slate-800/60 bg-[#090D15]/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-14">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-950/70 text-cyan-300 border border-cyan-800/60 text-xs font-mono tracking-wider uppercase">
+            Clinical Summary & Focus
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-tight">
+            The Clinical-Technological Intersection
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg">
+            A rare synthesis of frontline clinical acumen, enterprise health informatics, and rigorous machine learning evaluation standards.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          
+          <!-- Summary Block 1 -->
+          <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/30 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-800/60 flex items-center justify-center text-cyan-400 mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-white mb-2">Multidisciplinary Clinician</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Extensive hands-on practice in general medicine, differential diagnosis, acute emergency triage (ACLS, PALS, BLS), and chronic disease management. Blending clinical precision with patient-first empathy.
+            </p>
+          </div>
+
+          <!-- Summary Block 2 -->
+          <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-teal-500/30 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-teal-950/80 border border-teal-800/60 flex items-center justify-center text-teal-400 mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-white mb-2">Computer Information Systems</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Equipped with an MSc from Boston University (Honors) and BSc in Network Security (3.6 GPA). Certified Ethical Hacker (CEH) and PMP adept at enterprise architecture, HL7/FHIR EHR optimization, and secure API transport.
+            </p>
+          </div>
+
+          <!-- Summary Block 3 -->
+          <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/30 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-emerald-950/80 border border-emerald-800/60 flex items-center justify-center text-emerald-400 mb-5">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-white mb-2">Clinical AI & RLHF Domain Lead</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Evaluating clinical LLM outputs for diagnostic accuracy, pharmacotherapeutic contradictions, and reasoning flaws. Authoring medical golden rubrics and RLHF alignment workflows for clinical AI safety.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. Core Competencies Grid Section -->
+    <section id="competencies" class="py-20 md:py-28 border-b border-slate-800/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-teal-950/70 text-teal-300 border border-teal-800/60 text-xs font-mono tracking-wider uppercase">
+            Domain Specialization
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-tight">
+            Core Competencies & AI Domain Expertise
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg">
+            Structured into three interactive competency pillars spanning rigorous AI evaluation, clinical frontline care, and enterprise health informatics.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Competency Card 1: AI Auditing & Clinical Evaluation -->
+          <div class="group relative rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-cyan-500/50 p-7 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 flex flex-col justify-between">
+            <div class="space-y-5">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-800/80 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                </div>
+                <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-cyan-300 border border-slate-700">Pillar 01</span>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-heading font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  AI Auditing & Clinical Evaluation
+                </h3>
+                <p class="text-xs text-slate-400 mt-1 font-mono">Model Safety • RLHF • Medical Factuality</p>
+              </div>
+
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Expertise in stress-testing healthcare foundation models and clinical decision support pipelines against validated medical protocols and gold-standard benchmarks.
+              </p>
+
+              <!-- Competency Items List -->
+              <ul class="space-y-2.5 text-xs text-slate-300 pt-2 border-t border-slate-800/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-400 mt-0.5">▹</span>
+                  <span><strong>AI Auditing & Model Evaluation:</strong> Evaluating diagnostic consistency, sensitivity, and clinical guideline alignment.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-400 mt-0.5">▹</span>
+                  <span><strong>Reinforcement Learning from Human Feedback (RLHF):</strong> Guiding model preference toward verified clinical reasoning.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-400 mt-0.5">▹</span>
+                  <span><strong>Medical Hallucination & Factuality:</strong> Flagging subtle contraindications, dosing errors, and diagnostic drift.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-400 mt-0.5">▹</span>
+                  <span><strong>Prompt Engineering & Reference Rubrics:</strong> Authoring authoritative medical golden standards and test corpora.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-400 mt-0.5">▹</span>
+                  <span><strong>Healthcare Quality Assurance (QA):</strong> Validating automated triage and clinical logic gates before bedside deployment.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Mini Interactive Feature: Interactive Rubric Toggle -->
+            <div class="mt-6 pt-4 border-t border-slate-800/80">
+              <button type="button" onclick="openRubricDemoModal()" class="w-full py-2 px-3 rounded-lg bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700/80 text-xs font-mono text-cyan-300 flex items-center justify-between transition-colors">
+                <span>View Sample Clinical AI Audit Rubric</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Competency Card 2: Clinical Medicine & Public Health -->
+          <div class="group relative rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-teal-500/50 p-7 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/10 flex flex-col justify-between">
+            <div class="space-y-5">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-xl bg-teal-950/80 border border-teal-800/80 flex items-center justify-center text-teal-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-teal-300 border border-slate-700">Pillar 02</span>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-heading font-bold text-white group-hover:text-teal-300 transition-colors">
+                  Clinical Medicine & Public Health
+                </h3>
+                <p class="text-xs text-slate-400 mt-1 font-mono">Primary Care • Differential Dx • Telemetry</p>
+              </div>
+
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Licensed General Practitioner providing patient-centered preventive medicine, chronic disease management, and emergency clinical triage protocols.
+              </p>
+
+              <!-- Competency Items List -->
+              <ul class="space-y-2.5 text-xs text-slate-300 pt-2 border-t border-slate-800/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal-400 mt-0.5">▹</span>
+                  <span><strong>General Practice & Differential Diagnosis:</strong> Holistic patient evaluations, differential formulation, acute and preventive management.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal-400 mt-0.5">▹</span>
+                  <span><strong>Evidence-Based Preventive Care:</strong> Cardio-metabolic risk reduction, cancer screening guidelines, and lifestyle interventions.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal-400 mt-0.5">▹</span>
+                  <span><strong>Diabetes Technology & Telemetry:</strong> Continuous Glucose Monitoring (CGM) & Continuous Ketone Monitoring integration.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal-400 mt-0.5">▹</span>
+                  <span><strong>Emergency Triage & Resuscitation:</strong> Certified in ACLS, PALS, BLS, and acute cardiopulmonary resuscitation.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal-400 mt-0.5">▹</span>
+                  <span><strong>Epidemiology & Community Health:</strong> Population health analytics, infectious disease tracking, and behavioral health advocacy.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Mini Interactive Feature: Telemetry Simulator Trigger -->
+            <div class="mt-6 pt-4 border-t border-slate-800/80">
+              <button type="button" onclick="openTelemetryModal()" class="w-full py-2 px-3 rounded-lg bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700/80 text-xs font-mono text-teal-300 flex items-center justify-between transition-colors">
+                <span>View Live Diabetes Telemetry Simulation</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Competency Card 3: Health Informatics & Security -->
+          <div class="group relative rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-emerald-500/50 p-7 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 flex flex-col justify-between">
+            <div class="space-y-5">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-xl bg-emerald-950/80 border border-emerald-800/80 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800/80 text-emerald-300 border border-slate-700">Pillar 03</span>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-heading font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  Health Informatics & Security
+                </h3>
+                <p class="text-xs text-slate-400 mt-1 font-mono">EHR Optimization • CEH • ITIL Governance</p>
+              </div>
+
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Enterprise systems engineering and cybersecurity leadership protecting sensitive PHI through least-privilege architecture, ISO compliance, and intuitive clinical UX.
+              </p>
+
+              <!-- Competency Items List -->
+              <ul class="space-y-2.5 text-xs text-slate-300 pt-2 border-t border-slate-800/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 mt-0.5">▹</span>
+                  <span><strong>EHR Optimization & Interoperability:</strong> Streamlining clinical charting, EHR workflows, and reducing cognitive burden.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 mt-0.5">▹</span>
+                  <span><strong>Telehealth & Digital Health Pipelines:</strong> Designing secure asynchronous and synchronous consultation architectures.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 mt-0.5">▹</span>
+                  <span><strong>Network Security (CEH Certified):</strong> Threat modeling, vulnerability assessment, penetration testing, and zero-trust perimeter defense.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 mt-0.5">▹</span>
+                  <span><strong>PMP & ITIL Governance:</strong> Project management methodologies aligning cross-functional engineering with hospital boards.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-400 mt-0.5">▹</span>
+                  <span><strong>ISO & CMM Standards & UI/UX Design:</strong> Ensuring enterprise compliance, auditability, and ergonomic clinical UI/UX design.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Mini Interactive Feature: RBAC Matrix Trigger -->
+            <div class="mt-6 pt-4 border-t border-slate-800/80">
+              <button type="button" onclick="openRbacDemoModal()" class="w-full py-2 px-3 rounded-lg bg-slate-950/80 hover:bg-slate-800/80 border border-slate-700/80 text-xs font-mono text-emerald-300 flex items-center justify-between transition-colors">
+                <span>View Healthcare RBAC Architecture Spec</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. Featured Projects & Case Studies (Interactive Cards/Modals) -->
+    <section id="projects" class="py-20 md:py-28 border-b border-slate-800/60 bg-[#090D15]/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-950/70 text-cyan-300 border border-cyan-800/60 text-xs font-mono tracking-wider uppercase mb-3">
+              Case Studies & Systems Built
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-tight">
+              Featured Clinical & Informatics Projects
+            </h2>
+            <p class="text-slate-400 text-base max-w-2xl mt-2">
+              Deep dives into applied clinical AI evaluation, real-time diabetes telemetry pipelines, and HIPAA/ISO-compliant security architecture.
+            </p>
+          </div>
+
+          <!-- Project Category Filter Buttons -->
+          <div class="flex flex-wrap gap-2" role="tablist" aria-label="Project categories">
+            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 active-filter" data-filter="all">All Projects</button>
+            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="telemetry">Telemetry & EHR</button>
+            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="ai-audit">Clinical AI & RLHF</button>
+            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="security">Security & Access</button>
+          </div>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="projects-grid">
+          
+          <!-- Project 1: Diabetes Telemetry -->
+          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="telemetry">
+            <div>
+              <!-- Visual Card Header with Telemetry Accent -->
+              <div class="h-44 bg-gradient-to-br from-cyan-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center justify-between z-10">
+                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-900/60 text-cyan-200 border border-cyan-700/60">EHR & Telehealth</span>
+                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60">Deployed</span>
+                </div>
+                <div class="z-10">
+                  <div class="flex items-center gap-2 text-cyan-400 mb-1">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Case Study 01</span>
+                  </div>
+                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    Real-Time Diabetes Telemetry & EHR Integration
+                  </h3>
+                </div>
+              </div>
+
+              <!-- Content Body -->
+              <div class="p-6 space-y-4">
+                <p class="text-sm text-slate-300 leading-relaxed">
+                  Ingesting continuous glucose (CGM) and continuous ketone monitoring (CKM) streams into primary care EHR with automated clinical decision support (CDS) protocols and zero-trust transport.
+                </p>
+
+                <!-- Impact Metrics Pill -->
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Clinical Impact</span>
+                    <span class="text-sm font-bold text-emerald-400">42% Hypo Reduction</span>
+                  </div>
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Latency</span>
+                    <span class="text-sm font-bold text-cyan-400">&lt; 850ms Ingestion</span>
+                  </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">CGM / CKM</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">EHR Interop</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">CDS Rules</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Zero-Trust</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Action Footer -->
+            <div class="p-6 pt-0">
+              <button type="button" onclick="openProjectModal('project-1')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 hover:border-cyan-500/50 transition-colors">
+                <span>View Full Architecture & Clinical Impact</span>
+                <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Project 2: AI Hallucination Auditing -->
+          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-teal-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="ai-audit">
+            <div>
+              <!-- Visual Card Header with AI Audit Accent -->
+              <div class="h-44 bg-gradient-to-br from-teal-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center justify-between z-10">
+                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-teal-900/60 text-teal-200 border border-teal-700/60">Clinical AI & RLHF</span>
+                  <span class="text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800/60">Evaluation Suite</span>
+                </div>
+                <div class="z-10">
+                  <div class="flex items-center gap-2 text-teal-400 mb-1">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Case Study 02</span>
+                  </div>
+                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-teal-300 transition-colors">
+                    Clinical AI Hallucination & Factuality Auditing
+                  </h3>
+                </div>
+              </div>
+
+              <!-- Content Body -->
+              <div class="p-6 space-y-4">
+                <p class="text-sm text-slate-300 leading-relaxed">
+                  Authoring evidence-based medical rubrics to audit clinical LLMs, evaluate multi-step diagnostic reasoning, and flag contraindicated pharmacotherapy before real-world clinician exposure.
+                </p>
+
+                <!-- Impact Metrics Pill -->
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Guideline Adherence</span>
+                    <span class="text-sm font-bold text-cyan-400">99.4% Verified</span>
+                  </div>
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Rubrics Authored</span>
+                    <span class="text-sm font-bold text-teal-400">450+ Scenarios</span>
+                  </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">RLHF Alignment</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Clinical QA</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Medical Rubrics</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Factuality</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Action Footer -->
+            <div class="p-6 pt-0">
+              <button type="button" onclick="openProjectModal('project-2')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 hover:border-teal-500/50 transition-colors">
+                <span>View Full Rubric & Methodology</span>
+                <svg class="w-3.5 h-3.5 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Project 3: Automated RBAC & Access Audit Logging -->
+          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="security">
+            <div>
+              <!-- Visual Card Header with Security Accent -->
+              <div class="h-44 bg-gradient-to-br from-emerald-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center justify-between z-10">
+                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-900/60 text-emerald-200 border border-emerald-700/60">Security & Governance</span>
+                  <span class="text-xs font-mono text-teal-400 bg-teal-950/80 px-2 py-0.5 rounded border border-teal-800/60">Zero-Trust</span>
+                </div>
+                <div class="z-10">
+                  <div class="flex items-center gap-2 text-emerald-400 mb-1">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Case Study 03</span>
+                  </div>
+                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    Automated Healthcare Access & Audit Logging
+                  </h3>
+                </div>
+              </div>
+
+              <!-- Content Body -->
+              <div class="p-6 space-y-4">
+                <p class="text-sm text-slate-300 leading-relaxed">
+                  Architected automated least-privilege Role-Based Access Controls (RBAC) and tamper-evident audit logging pipelines for clinical databases, aligning operations with CEH principles.
+                </p>
+
+                <!-- Impact Metrics Pill -->
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Compliance Audits</span>
+                    <span class="text-sm font-bold text-emerald-400">100% Pass Rate</span>
+                  </div>
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Break-Glass Access</span>
+                    <span class="text-sm font-bold text-teal-400">&lt; 3s Emergency OTP</span>
+                  </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">CEH Security</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Least Privilege</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Audit Streaming</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">ISO/HIPAA</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Action Footer -->
+            <div class="p-6 pt-0">
+              <button type="button" onclick="openProjectModal('project-3')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 hover:border-emerald-500/50 transition-colors">
+                <span>View Security Specs & Controls</span>
+                <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. Professional Experience & Leadership Timeline -->
+    <section id="experience" class="py-20 md:py-28 border-b border-slate-800/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-950/70 text-emerald-300 border border-emerald-800/60 text-xs font-mono tracking-wider uppercase">
+            Clinical & Technology Leadership
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-tight">
+            Professional Experience
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg">
+            Track record of leading primary care clinics and directing medical software integration, clinical AI QA, and digital health initiatives.
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-8 relative">
+          <!-- Timeline Vertical Connecting Line -->
+          <div class="absolute left-4 sm:left-8 top-3 bottom-3 w-0.5 bg-gradient-to-b from-cyan-500 via-teal-500 to-emerald-500/40 hidden sm:block"></div>
+
+          <!-- Role 1: Emeis Care -->
+          <div class="relative sm:pl-20 group">
+            <!-- Timeline Indicator Node -->
+            <div class="hidden sm:flex absolute left-6 -translate-x-1/2 top-6 w-5 h-5 rounded-full bg-[#070B12] border-2 border-cyan-400 items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            </div>
+
+            <div class="p-7 rounded-2xl bg-slate-900/80 border border-slate-800 group-hover:border-cyan-500/40 transition-all shadow-md">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-800">
+                <div>
+                  <span class="text-xs font-mono text-cyan-400 font-semibold uppercase tracking-wider">Present Role</span>
+                  <h3 class="text-xl font-heading font-bold text-white">
+                    Health Consultant & Clinical Informatics Lead
+                  </h3>
+                  <div class="text-teal-300 font-semibold text-sm">Emeis Care</div>
+                </div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 self-start sm:self-auto">
+                  <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <span>2023 – Present</span>
+                </div>
+              </div>
+
+              <div class="pt-5 space-y-3 text-sm text-slate-300">
+                <p class="leading-relaxed">
+                  Leading strategic healthcare consulting, digital health integration, and clinical AI auditing across complex healthcare workflows.
+                </p>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-cyan-400 font-bold">✔</span>
+                    <span><strong>AI Auditing & Workflow Integration:</strong> Deliver clinical domain expertise to evaluate health informatics pipelines, audit LLM diagnostics, and verify automated clinical decision support (CDS) protocols.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-cyan-400 font-bold">✔</span>
+                    <span><strong>Preventive Care & Telehealth:</strong> Advise on evidence-based preventive care, chronic disease management, and digital telehealth initiatives to expand patient access and diagnostic continuity.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-cyan-400 font-bold">✔</span>
+                    <span><strong>EHR Optimization:</strong> Re-engineer Electronic Health Record interfaces to improve diagnostic accuracy, reduce clinician documentation fatigue, and align delivery with patient-centered standards.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Role 2: White Royal Clinic -->
+          <div class="relative sm:pl-20 group">
+            <!-- Timeline Indicator Node -->
+            <div class="hidden sm:flex absolute left-6 -translate-x-1/2 top-6 w-5 h-5 rounded-full bg-[#070B12] border-2 border-teal-400 items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+            </div>
+
+            <div class="p-7 rounded-2xl bg-slate-900/80 border border-slate-800 group-hover:border-teal-500/40 transition-all shadow-md">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-800">
+                <div>
+                  <span class="text-xs font-mono text-teal-400 font-semibold uppercase tracking-wider">Previous Leadership</span>
+                  <h3 class="text-xl font-heading font-bold text-white">
+                    General Practitioner & Medical Software Lead
+                  </h3>
+                  <div class="text-teal-300 font-semibold text-sm">White Royal Clinic</div>
+                </div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 self-start sm:self-auto">
+                  <svg class="w-3.5 h-3.5 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <span>2019 – 2023</span>
+                </div>
+              </div>
+
+              <div class="pt-5 space-y-3 text-sm text-slate-300">
+                <p class="leading-relaxed">
+                  Directed clinic administration, frontline diagnostics, emergency resuscitation, and medical software quality assurance.
+                </p>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-teal-400 font-bold">✔</span>
+                    <span><strong>Comprehensive Clinical Diagnostics:</strong> Conducted differential patient assessments, acute emergency medical triage, and personalized treatment plans across diverse demographic cohorts.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-teal-400 font-bold">✔</span>
+                    <span><strong>Diabetes Technology Deployment:</strong> Spearheaded the integration of modern diabetes continuous telemetry (CGM and ketone monitoring) directly into primary care clinical workflows.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-teal-400 font-bold">✔</span>
+                    <span><strong>Software QA & Operational Quality:</strong> Directed healthcare quality assurance (QA) protocols, clinical database integrity checks, and administrative software modernization.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. Education & Credentials Showcase -->
+    <section id="credentials" class="py-20 md:py-28 border-b border-slate-800/60 bg-[#090D15]/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-950/70 text-cyan-300 border border-cyan-800/60 text-xs font-mono tracking-wider uppercase">
+            Rigorous Academic & Industry Foundations
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-tight">
+            Education, Licensures & Certifications
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg">
+            A comprehensive foundation in computer information systems, network security, clinical medicine, emergency support, and project management.
+          </p>
+        </div>
+
+        <!-- Academic Degrees Grid -->
+        <div class="space-y-6 mb-16">
+          <h3 class="text-xl font-heading font-bold text-white flex items-center gap-3">
+            <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+            <span>Academic Degrees</span>
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Degree 1: Boston University -->
+            <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-mono text-cyan-400 bg-cyan-950/70 px-2.5 py-1 rounded border border-cyan-800/60">Graduated with Honors</span>
+                  <span class="text-xs font-mono text-slate-400">2016</span>
+                </div>
+                <h4 class="text-lg font-heading font-bold text-white">MSc. in Computer Information Systems</h4>
+                <div class="text-sm text-teal-300 font-semibold mb-2">Boston University</div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Specialized in enterprise software architecture, database management systems, and health information system reliability.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] font-mono text-slate-400">
+                Major: Computer Information Systems
+              </div>
+            </div>
+
+            <!-- Degree 2: Derby University -->
+            <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-teal-500/50 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-mono text-teal-400 bg-teal-950/70 px-2.5 py-1 rounded border border-teal-800/60">GPA: 3.6</span>
+                  <span class="text-xs font-mono text-slate-400">2015</span>
+                </div>
+                <h4 class="text-lg font-heading font-bold text-white">BSc. in Network Security</h4>
+                <div class="text-sm text-teal-300 font-semibold mb-2">Derby University</div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Developed secure network protocols, conducted network penetration analyses, and led a cybersecurity project team.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] font-mono text-slate-400">
+                Major: Network Security • Cyber Defense
+              </div>
+            </div>
+
+            <!-- Degree 3: University of the People -->
+            <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/70 px-2.5 py-1 rounded border border-emerald-800/60">Graduated with Honors</span>
+                  <span class="text-xs font-mono text-slate-400">BHS</span>
+                </div>
+                <h4 class="text-lg font-heading font-bold text-white">Bachelor in Health Science (BHS)</h4>
+                <div class="text-sm text-teal-300 font-semibold mb-2">University of the People</div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  Focus in health science, community health systems, epidemiology, and population-level health interventions.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] font-mono text-slate-400">
+                Major: Health Science & Epidemiology
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Licensures & Industry Certifications Showcase -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          
+          <!-- Healthcare & Clinical Licensures -->
+          <div class="p-7 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-cyan-950/80 border border-cyan-800/60 flex items-center justify-center text-cyan-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-heading font-bold text-white">Healthcare & Clinical Licensures</h4>
+                <p class="text-xs text-slate-400">Frontline medical qualifications & life support certifications</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">General Practitioner (GP)</div>
+                  <div class="text-[11px] text-slate-400">Licensed Physician</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">ACLS Certification</div>
+                  <div class="text-[11px] text-slate-400">Advanced Cardiac Life Support</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">PALS Certification</div>
+                  <div class="text-[11px] text-slate-400">Pediatric Advanced Life Support</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">BLS / CPR & AED</div>
+                  <div class="text-[11px] text-slate-400">Basic Life Support Resuscitation</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">Community & Public Health</div>
+                  <div class="text-[11px] text-slate-400">CPH & Population Epidemiology</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">Behavioral Health</div>
+                  <div class="text-[11px] text-slate-400">Clinical Patient Advocacy</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technology, Security & Management Certifications -->
+          <div class="p-7 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-emerald-950/80 border border-emerald-800/60 flex items-center justify-center text-emerald-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-heading font-bold text-white">Technology & Governance Certifications</h4>
+                <p class="text-xs text-slate-400">Cybersecurity, systems engineering & project delivery</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">CEH (Certified Ethical Hacker)</div>
+                  <div class="text-[11px] text-slate-400">Offensive Security & Pen-Testing</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">PMP Certification</div>
+                  <div class="text-[11px] text-slate-400">Project Management Professional</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">ITIL Certification</div>
+                  <div class="text-[11px] text-slate-400">IT Service Management Governance</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">CompTIA A+ & MCSE</div>
+                  <div class="text-[11px] text-slate-400">Systems & Infrastructure Engineer</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">CMM & ISO Compliance</div>
+                  <div class="text-[11px] text-slate-400">Maturity Models & Quality Stds</div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+                <div>
+                  <div class="text-xs font-semibold text-white">UI & UX Certification</div>
+                  <div class="text-[11px] text-slate-400">Clinical Workflow & Ergonomics</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Continuing Medical Education (CME) & Specialized Clinical Focus -->
+        <div class="p-8 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800">
+          <div class="flex items-center gap-3 mb-4">
+            <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <h3 class="text-lg font-heading font-bold text-white">Continuing Medical Education (CME) & Specialized Focus</h3>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-300 mb-6">
+            Active pursuit of contemporary clinical guidelines and evidence-based medicine across metabolic, oncology, autoimmune, and neurovascular therapeutics.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-xs">
+              <span class="text-cyan-400 font-semibold block mb-0.5">Diabetes & Medical Telemetry</span>
+              <span class="text-slate-400">Integrating Continuous Ketone & Glucose Systems into Primary Care</span>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-xs">
+              <span class="text-teal-400 font-semibold block mb-0.5">Stroke Prevention</span>
+              <span class="text-slate-400">Factor XIa Inhibitors in Thromboprophylaxis & Stroke Prevention</span>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-xs">
+              <span class="text-emerald-400 font-semibold block mb-0.5">Oncology Protocols</span>
+              <span class="text-slate-400">Breast Cancer Care 2025 Guidelines & Targeted Therapeutics</span>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-xs">
+              <span class="text-cyan-400 font-semibold block mb-0.5">Autoimmune Disorders</span>
+              <span class="text-slate-400">Clinical Management of Myasthenia Gravis & Autoimmune Crises</span>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-xs">
+              <span class="text-teal-400 font-semibold block mb-0.5">Pulmonary Oncology</span>
+              <span class="text-slate-400">Early Screening & Lung Cancer Detection in Scleroderma</span>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 text-xs">
+              <span class="text-emerald-400 font-semibold block mb-0.5">Neurology & Women's Health</span>
+              <span class="text-slate-400">Migraine Stigma & Care; Pregnancy Planning & Contraception Counseling</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. Contact & Engagement Section -->
+    <section id="contact" class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-950/70 text-cyan-300 border border-cyan-800/60 text-xs font-mono tracking-wider uppercase">
+            Let's Collaborate
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-tight">
+            Initiate Contact & Clinical Consultation
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg">
+            Available for Clinical AI model auditing, RLHF evaluation pipelines, Health Informatics leadership, and digital health technology consulting.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          <!-- Contact Channels Info Column -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-6">
+              <h3 class="text-lg font-heading font-bold text-white">Direct Communication</h3>
+              
+              <!-- Direct Email -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-800/60 flex items-center justify-center text-cyan-400 shrink-0">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <span class="text-xs font-mono text-slate-400 uppercase block">Primary Inquiries</span>
+                  <a href="mailto:ibrahimmohammedevuti@gmail.com" class="text-sm font-semibold text-white hover:text-cyan-300 transition-colors break-all">
+                    ibrahimmohammedevuti@gmail.com
+                  </a>
+                  <div class="mt-1">
+                    <button type="button" onclick="copyToClipboard('ibrahimmohammedevuti@gmail.com', 'Email copied!')" class="text-xs text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1 font-mono">
+                      <span>Click to copy address</span>
+                      <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phone Numbers -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-teal-950/80 border border-teal-800/60 flex items-center justify-center text-teal-400 shrink-0">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <span class="text-xs font-mono text-slate-400 uppercase block">Direct Telephony</span>
+                  <div class="text-sm font-semibold text-white space-y-0.5">
+                    <div><a href="tel:+18147132665" class="hover:text-teal-300 transition-colors">+1-814-713-2665</a> <span class="text-xs text-slate-500 font-mono">(North America)</span></div>
+                    <div><a href="tel:+2347032553907" class="hover:text-teal-300 transition-colors">+234-070-3255-3907</a> <span class="text-xs text-slate-500 font-mono">(Africa / EMEA)</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Location & Timezone -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-950/80 border border-emerald-800/60 flex items-center justify-center text-emerald-400 shrink-0">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <span class="text-xs font-mono text-slate-400 uppercase block">Availability & Timezone</span>
+                  <div class="text-sm font-semibold text-white">Global Remote Consultations</div>
+                  <p class="text-xs text-slate-400 mt-0.5">UTC+1 base with standard daily overlap across US Eastern/Pacific & EMEA working hours.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Download CV Direct Box -->
+            <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800 flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-heading font-bold text-white">Looking for the official CV?</h4>
+                <p class="text-xs text-slate-400 mt-1">Download the verified 2-page clinical & tech resume.</p>
+              </div>
+              <a href="/assets/aistudio/Ibrahim_Mohammed_-_Clinical_and_Health_Informatics_AI_Resume_d47b0aec.pdf" download="Dr_Ibrahim_Mohammed_CV.pdf" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 shadow-sm transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                <span>PDF CV</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Interactive Contact Form Column -->
+          <div class="lg:col-span-7">
+            <div class="p-8 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl relative">
+              
+              <div class="mb-6">
+                <h3 class="text-xl font-heading font-bold text-white">Send a Message</h3>
+                <p class="text-xs text-slate-400 mt-1">Submit your project details or advisory inquiries directly to Dr. Mohammed.</p>
+              </div>
+
+              <form id="contact-form" class="space-y-4" onsubmit="handleContactSubmit(event)">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <!-- Name Field -->
+                  <div>
+                    <label for="contact-name" class="block text-xs font-mono text-slate-300 mb-1">Your Full Name <span class="text-cyan-400">*</span></label>
+                    <input type="text" id="contact-name" required placeholder="e.g. Dr. Sarah Jenkins" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors" />
+                  </div>
+
+                  <!-- Email Field -->
+                  <div>
+                    <label for="contact-email" class="block text-xs font-mono text-slate-300 mb-1">Your Work Email <span class="text-cyan-400">*</span></label>
+                    <input type="email" id="contact-email" required placeholder="name@hospital.org" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <!-- Organization Field -->
+                  <div>
+                    <label for="contact-org" class="block text-xs font-mono text-slate-300 mb-1">Organization / Hospital System</label>
+                    <input type="text" id="contact-org" placeholder="Health System, Startup, or Lab" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors" />
+                  </div>
+
+                  <!-- Focus Area / Topic -->
+                  <div>
+                    <label for="contact-topic" class="block text-xs font-mono text-slate-300 mb-1">Inquiry Focus Area</label>
+                    <select id="contact-topic" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors">
+                      <option value="Clinical AI & Model Auditing (RLHF)">Clinical AI & Model Auditing (RLHF)</option>
+                      <option value="Health Informatics & EHR Optimization">Health Informatics & EHR Optimization</option>
+                      <option value="Diabetes Telemetry & CGM/CKM Systems">Diabetes Telemetry & CGM/CKM Systems</option>
+                      <option value="Cybersecurity & HIPAA/ISO Compliance">Cybersecurity & HIPAA/ISO Compliance</option>
+                      <option value="General Clinical Advisory / Other">General Clinical Advisory / Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Message Field -->
+                <div>
+                  <label for="contact-message" class="block text-xs font-mono text-slate-300 mb-1">Message & Context <span class="text-cyan-400">*</span></label>
+                  <textarea id="contact-message" rows="4" required placeholder="Describe your initiative, evaluation criteria, or engagement scope..." class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors resize-y"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div class="text-[11px] text-slate-500 font-mono">
+                    Direct delivery to Dr. Mohammed's clinical inbox.
+                  </div>
+
+                  <button type="submit" id="submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-300 hover:to-teal-300 shadow-md shadow-cyan-500/20 transition-all transform active:scale-95">
+                    <span id="submit-btn-text">Send Consultation Request</span>
+                    <svg id="submit-btn-spinner" class="w-4 h-4 animate-spin hidden" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Success Banner State -->
+                <div id="contact-success" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/80 border border-emerald-800/80 text-emerald-200 text-xs">
+                  <div class="flex items-center gap-2 font-semibold mb-1">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                    <span>Consultation Request Registered</span>
+                  </div>
+                  <p class="text-emerald-300/80">Thank you. Your message has been prepared for Dr. Ibrahim Mohammed. A direct mail client draft has also been initiated for your records.</p>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Accessible Footer -->
+  <footer class="border-t border-slate-800 bg-[#06090F] py-12 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-800 flex items-center justify-center text-cyan-400 font-bold font-mono text-xs">
+            IM
+          </div>
+          <div>
+            <div class="font-heading font-semibold text-white">Dr. Ibrahim Mohammed</div>
+            <div class="text-[11px] text-slate-500">General Practitioner • Health Informatics Lead • Clinical AI Specialist</div>
+          </div>
+        </div>
+
+        <!-- Footer Navigation Links -->
+        <div class="flex flex-wrap items-center gap-6 text-slate-400">
+          <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+          <a href="#competencies" class="hover:text-cyan-400 transition-colors">Competencies</a>
+          <a href="#projects" class="hover:text-cyan-400 transition-colors">Case Studies</a>
+          <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+          <a href="#credentials" class="hover:text-cyan-400 transition-colors">Credentials</a>
+          <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+        </div>
+
+        <!-- Back to Top Button -->
+        <div>
+          <a href="#hero" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white transition-colors" aria-label="Back to top of page">
+            <span>Back to top</span>
+            <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <p>© 2026 Dr. Ibrahim Mohammed. All clinical rights reserved. Built with modern, accessible web standards.</p>
+        <p class="font-mono">Global Remote | UTC+1 • Warri, Delta State, Nigeria</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE MODALS ==================== -->
+
+  <!-- Modal 1: Project Details Modal (Reusable for Case Studies 1, 2, 3) -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
+    <div class="relative w-full max-w-3xl rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden my-8">
+      
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-slate-800 flex items-start justify-between bg-slate-950/50">
+        <div>
+          <span id="modal-project-badge" class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/60 uppercase">Category</span>
+          <h3 id="modal-project-title" class="text-xl sm:text-2xl font-heading font-bold text-white mt-2">Project Title</h3>
+        </div>
+        <button type="button" onclick="closeProjectModal()" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500" aria-label="Close modal">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div id="modal-project-body" class="p-6 sm:p-8 space-y-6 max-h-[75vh] overflow-y-auto">
+        <!-- Dynamic content injected via vanilla JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-slate-800 bg-slate-950 flex items-center justify-between">
+        <span class="text-xs font-mono text-slate-500">Dr. Ibrahim Mohammed Case Study Series</span>
+        <button type="button" onclick="closeProjectModal()" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors">
+          Close Window
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal 2: Curriculum Vitae (CV) Preview Modal -->
+  <div id="cv-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="cv-modal-title">
+    <div class="relative w-full max-w-4xl h-[90vh] rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden flex flex-col">
+      
+      <!-- Header -->
+      <div class="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-cyan-950 text-cyan-400 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          </div>
+          <div>
+            <h3 id="cv-modal-title" class="text-base sm:text-lg font-heading font-bold text-white">Curriculum Vitae — Dr. Ibrahim Mohammed</h3>
+            <p class="text-xs text-slate-400">Clinical & Health Informatics AI Resume</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- View Toggle Tabs -->
+          <div class="flex bg-slate-900 p-1 rounded-lg border border-slate-800 text-xs">
+            <button id="cv-tab-summary" type="button" onclick="switchCvTab('summary')" class="px-2.5 py-1 rounded font-medium bg-cyan-500/20 text-cyan-300">Overview</button>
+            <button id="cv-tab-pdf" type="button" onclick="switchCvTab('pdf')" class="px-2.5 py-1 rounded font-medium text-slate-400 hover:text-white">PDF Embed</button>
+          </div>
+
+          <a href="/assets/aistudio/Ibrahim_Mohammed_-_Clinical_and_Health_Informatics_AI_Resume_d47b0aec.pdf" download="Dr_Ibrahim_Mohammed_CV.pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            <span class="hidden sm:inline">Download</span>
+          </a>
+          <button type="button" onclick="closeCvModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800" aria-label="Close CV modal">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- CV Content Container -->
+      <div class="flex-1 bg-slate-950 relative overflow-y-auto">
+        
+        <!-- Tab 1: Formatted Interactive Resume View (Always readable on mobile & desktop) -->
+        <div id="cv-content-summary" class="p-6 sm:p-8 space-y-6 max-w-3xl mx-auto text-slate-300 text-xs sm:text-sm">
+          
+          <!-- Resume Header Banner -->
+          <div class="border-b border-slate-800 pb-5">
+            <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-white">IBRAHIM MOHAMMED</h2>
+            <div class="text-cyan-400 font-semibold text-sm sm:text-base mt-1">General Practitioner, Health Informatics Lead & AI Domain Expert</div>
+            <div class="text-slate-400 text-xs mt-2 space-y-1">
+              <div>Global Remote (UTC+1 | US EST/PST & EMEA Overlap) • Warri, Delta State, Nigeria</div>
+              <div class="font-mono text-cyan-300">Email: ibrahimmohammedevuti@gmail.com • Tel: +1-814-713-2665, +234-070-3255-3907</div>
+            </div>
+          </div>
+
+          <!-- Professional Summary -->
+          <div>
+            <h4 class="text-xs font-mono uppercase tracking-wider text-teal-400 font-bold mb-2">Professional Summary</h4>
+            <p class="text-slate-300 leading-relaxed bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+              Multidisciplinary General Practitioner, Health Consultant, and Lead Technologist blending extensive clinical experience in primary care, epidemiology, and chronic disease management with an MSc in Computer Information Systems and a BSc in Network Security. Proven expertise in AI auditing, health informatics, electronic health record (EHR) optimization, and diabetes telemetry integration. Adept at evaluating clinical AI/LLM outputs for diagnostic accuracy, authoring evidence-based medical rubrics, identifying clinical hallucinations (RLHF), and aligning healthcare delivery with modern cybersecurity and enterprise software standards.
+            </p>
+          </div>
+
+          <!-- Experience -->
+          <div>
+            <h4 class="text-xs font-mono uppercase tracking-wider text-cyan-400 font-bold mb-3">Professional Experience</h4>
+            <div class="space-y-4">
+              <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-white">
+                  <span>Health Consultant & Clinical Informatics Lead | Emeis Care</span>
+                  <span class="text-xs font-mono text-teal-300">2023 – Present</span>
+                </div>
+                <ul class="list-disc pl-4 space-y-1 text-slate-300 text-xs">
+                  <li>Provide strategic health consulting, patient advocacy, digital health technology integration, and AI auditing across clinical workflows.</li>
+                  <li>Advise on evidence-based preventive care, chronic disease management, telehealth initiatives, and Electronic Health Record (EHR) optimization to enhance diagnostic accuracy and care continuity.</li>
+                  <li>Deliver clinical domain expertise to evaluate health informatics pipelines, verify automated clinical decision support protocols, and align healthcare service delivery with patient-centered care standards.</li>
+                </ul>
+              </div>
+
+              <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between font-semibold text-white">
+                  <span>General Practitioner & Medical Software Lead | White Royal Clinic</span>
+                  <span class="text-xs font-mono text-teal-300">2019 – 2023</span>
+                </div>
+                <ul class="list-disc pl-4 space-y-1 text-slate-300 text-xs">
+                  <li>Conducted comprehensive clinical diagnostics, differential patient assessments, acute emergency medical care, and personalized treatment plans across diverse patient demographics.</li>
+                  <li>Integrated modern diabetes technology (continuous glucose and ketone monitoring systems) and evidence-based preventive care strategies into primary healthcare workflows.</li>
+                  <li>Directed clinic administration, medical software integration, and healthcare quality assurance (QA) protocols to improve operational efficiency, data integrity, and longitudinal patient outcomes.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education & Credentials -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+              <h4 class="text-xs font-mono uppercase tracking-wider text-emerald-400 font-bold mb-2">Education</h4>
+              <ul class="space-y-2 text-xs">
+                <li><strong class="text-white">MSc. in Computer Information Systems</strong> (Honors) — Boston University (2016)</li>
+                <li><strong class="text-white">BSc. in Network Security</strong> (GPA 3.6) — Derby University (2015)</li>
+                <li><strong class="text-white">Bachelor in Health Science</strong> (Honors) — University of the People</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+              <h4 class="text-xs font-mono uppercase tracking-wider text-cyan-400 font-bold mb-2">Licensures & Certifications</h4>
+              <ul class="space-y-1.5 text-xs text-slate-300">
+                <li><span class="text-cyan-400">Clinical:</span> GP License, ACLS, PALS, BLS, CPR & AED, CPH, Epidemiology, Behavioral Health.</li>
+                <li><span class="text-teal-400">Tech & Security:</span> CEH, PMP, ITIL, CompTIA A+, MCSE, CMM, ISO Compliance, UI & UX.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tab 2: Embedded PDF Container -->
+        <div id="cv-content-pdf" class="w-full h-full hidden">
+          <iframe 
+            id="cv-iframe" 
+            src="/assets/aistudio/Ibrahim_Mohammed_-_Clinical_and_Health_Informatics_AI_Resume_d47b0aec.pdf" 
+            class="w-full h-full border-0 min-h-[500px]" 
+            title="Dr. Ibrahim Mohammed Curriculum Vitae">
+          </iframe>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="p-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+        <span>Official Curriculum Vitae (2 Pages).</span>
+        <a href="/assets/aistudio/Ibrahim_Mohammed_-_Clinical_and_Health_Informatics_AI_Resume_d47b0aec.pdf" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">Open raw PDF in new tab</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal 3: Live Clinical AI Audit Rubric Interactive Demo -->
+  <div id="rubric-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="rubric-modal-title">
+    <div class="relative w-full max-w-3xl rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden my-8">
+      <div class="p-6 border-b border-slate-800 flex items-start justify-between bg-slate-950">
+        <div>
+          <span class="text-xs font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/60 uppercase">Clinical AI Rubric</span>
+          <h3 id="rubric-modal-title" class="text-xl font-heading font-bold text-white mt-1">Multi-Turn Medical Hallucination & Factuality Audit</h3>
+        </div>
+        <button type="button" onclick="closeRubricModal()" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+      <div class="p-6 space-y-6 text-sm">
+        
+        <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+          <div class="text-xs font-mono text-cyan-400 mb-1">CLINICAL VIGNETTE UNDER EVALUATION</div>
+          <p class="text-slate-300 text-xs sm:text-sm">
+            58-year-old male with Type 2 Diabetes, eGFR of 28 mL/min/1.73m² (Stage 4 CKD), presenting with acute gout flare. Model prompted for immediate analgesia and antidiabetic regimen adjustment.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Unvetted Model Failure -->
+          <div class="p-4 rounded-xl bg-red-950/20 border border-red-800/50 space-y-2">
+            <div class="flex items-center gap-2 text-red-400 font-semibold text-xs font-mono">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              <span>UNVETTED LLM OUTPUT (FAILED AUDIT)</span>
+            </div>
+            <p class="text-xs text-red-200/90 leading-relaxed">
+              "Start high-dose Indomethacin (50mg TID) immediately for acute gout and continue Metformin at 1000mg BID with normal hydration."
+            </p>
+            <div class="pt-2 text-[11px] text-red-300 border-t border-red-900/40">
+              <strong>Audit Strike:</strong> Severe nephrotoxicity risk. NSAIDs contraindicated in eGFR &lt; 30. Metformin contraindicated due to fatal lactic acidosis risk in Stage 4 CKD.
+            </div>
+          </div>
+
+          <!-- Clinically Audited Output -->
+          <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-800/50 space-y-2">
+            <div class="flex items-center gap-2 text-emerald-400 font-semibold text-xs font-mono">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span>GOLDEN RUBRIC ALIGNED (VERIFIED)</span>
+            </div>
+            <p class="text-xs text-emerald-200/90 leading-relaxed">
+              "NSAIDs & Metformin strictly contraindicated (eGFR 28). Initiate short-course oral Prednisone or intra-articular steroid. Transition antidiabetic therapy to renal-safe DPP-4i (Linagliptin) or insulin."
+            </p>
+            <div class="pt-2 text-[11px] text-emerald-300 border-t border-emerald-900/40">
+              <strong>Audit Result:</strong> 100% adherence to KDIGO & ADA guidelines. Zero contraindication risks.
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-2">
+          <div class="font-mono text-cyan-300 font-semibold">METHODOLOGY IN RLHF WORKFLOWS:</div>
+          <p class="text-slate-400">
+            Dr. Mohammed authors multidimensional evaluation rubrics evaluating: (1) Pathophysiological soundness, (2) Renal/Hepatic dosing safety, (3) Red-flag rule-outs, (4) Explicit differential prioritization.
+          </p>
+        </div>
+
+      </div>
+      <div class="p-4 border-t border-slate-800 bg-slate-950 flex justify-end">
+        <button type="button" onclick="closeRubricModal()" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700">Close Rubric</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Telemetry Simulation Modal -->
+  <div id="telemetry-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="telemetry-modal-title">
+    <div class="relative w-full max-w-3xl rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden my-8">
+      <div class="p-6 border-b border-slate-800 flex items-start justify-between bg-slate-950">
+        <div>
+          <span class="text-xs font-mono px-2 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800/60 uppercase">Telemetry Simulation</span>
+          <h3 id="telemetry-modal-title" class="text-xl font-heading font-bold text-white mt-1">Continuous Glucose & Ketone Stream Monitor</h3>
+        </div>
+        <button type="button" onclick="closeTelemetryModal()" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+      <div class="p-6 space-y-6 text-sm">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-mono text-slate-400">Current Blood Glucose</div>
+            <div class="text-2xl font-heading font-bold text-cyan-400 mt-1" id="sim-glucose">118 mg/dL</div>
+            <div class="text-[11px] text-emerald-400 mt-0.5 flex items-center gap-1">
+              <span>● Target In-Range (70-140)</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-mono text-slate-400">Blood Ketones (Beta-HB)</div>
+            <div class="text-2xl font-heading font-bold text-teal-400 mt-1" id="sim-ketones">0.3 mmol/L</div>
+            <div class="text-[11px] text-emerald-400 mt-0.5 flex items-center gap-1">
+              <span>● Normal (&lt; 0.6 mmol/L)</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-mono text-slate-400">CDS Alert Status</div>
+            <div class="text-2xl font-heading font-bold text-emerald-400 mt-1">Nominal</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Automated Rules Active</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+            <span>24-Hour Continuous Telemetry Horizon</span>
+            <span class="text-cyan-400">Sampling Rate: 1/5min</span>
+          </div>
+          <!-- Visual Bar Representation -->
+          <div class="h-28 flex items-end gap-1.5 pt-4 px-2 border-b border-slate-800">
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[55%]" title="105 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[60%]" title="115 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[75%]" title="140 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[68%]" title="128 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[50%]" title="98 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[52%]" title="102 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[62%]" title="118 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[70%]" title="132 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[80%]" title="150 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[65%]" title="122 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[58%]" title="110 mg/dL"></div>
+            <div class="flex-1 bg-cyan-500/70 rounded-t h-[61%]" title="118 mg/dL"></div>
+          </div>
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-2">
+            <span>00:00</span>
+            <span>06:00</span>
+            <span>12:00</span>
+            <span>18:00</span>
+            <span>Now</span>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-300 space-y-2">
+          <div class="font-mono text-teal-400 font-semibold">CLINICAL VALUE OF TELEMETRY INTEGRATION:</div>
+          <p class="text-slate-400">
+            Directly feeding wearable sensor telemetry into the EHR allows automated detection of nocturnal hypoglycemic plunges and early diabetic ketoacidosis (DKA) risk before symptom onset.
+          </p>
+        </div>
+
+      </div>
+      <div class="p-4 border-t border-slate-800 bg-slate-950 flex justify-end">
+        <button type="button" onclick="closeTelemetryModal()" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700">Close Monitor</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Security RBAC Specification Demo Modal -->
+  <div id="rbac-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="rbac-modal-title">
+    <div class="relative w-full max-w-3xl rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden my-8">
+      <div class="p-6 border-b border-slate-800 flex items-start justify-between bg-slate-950">
+        <div>
+          <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 uppercase">CEH Security Spec</span>
+          <h3 id="rbac-modal-title" class="text-xl font-heading font-bold text-white mt-1">Healthcare Database RBAC & Audit Architecture</h3>
+        </div>
+        <button type="button" onclick="closeRbacModal()" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+      <div class="p-6 space-y-6 text-sm">
+        
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+          <div class="text-xs font-mono text-emerald-400 mb-2 font-semibold">ROLE-BASED ACCESS CONTROL (RBAC) MATRIX</div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead>
+                <tr class="border-b border-slate-800 text-slate-400 font-mono">
+                  <th class="py-2">Role</th>
+                  <th class="py-2">PHI Read</th>
+                  <th class="py-2">Clinical Order</th>
+                  <th class="py-2">Break-Glass</th>
+                  <th class="py-2">Audit Logging</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60 font-mono text-[11px]">
+                <tr>
+                  <td class="py-2 text-white font-semibold">Attending Physician</td>
+                  <td class="py-2 text-emerald-400">Assigned Patients</td>
+                  <td class="py-2 text-emerald-400">Full Signature</td>
+                  <td class="py-2 text-cyan-400">MFA Escalation</td>
+                  <td class="py-2 text-slate-400">Immutable Stream</td>
+                </tr>
+                <tr>
+                  <td class="py-2 text-white font-semibold">Triage Nurse / Allied</td>
+                  <td class="py-2 text-emerald-400">Shift Roster Only</td>
+                  <td class="py-2 text-slate-500">Read-Only</td>
+                  <td class="py-2 text-cyan-400">Emergency Override</td>
+                  <td class="py-2 text-slate-400">Immutable Stream</td>
+                </tr>
+                <tr>
+                  <td class="py-2 text-white font-semibold">Billing & Admin</td>
+                  <td class="py-2 text-amber-400">De-identified / Demographics</td>
+                  <td class="py-2 text-slate-500">Denied</td>
+                  <td class="py-2 text-red-400">Denied</td>
+                  <td class="py-2 text-slate-400">Immutable Stream</td>
+                </tr>
+                <tr>
+                  <td class="py-2 text-white font-semibold">AI Inference Pipeline</td>
+                  <td class="py-2 text-cyan-400">Scoped Context Window</td>
+                  <td class="py-2 text-slate-500">Recommendation Only</td>
+                  <td class="py-2 text-red-400">Denied</td>
+                  <td class="py-2 text-slate-400">Tamper-Evident SHA-256</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="space-y-2 text-xs text-slate-300">
+          <div class="font-mono text-emerald-400 font-semibold">SECURITY HIGHLIGHTS:</div>
+          <p class="text-slate-400 leading-relaxed">
+            Incorporates Certified Ethical Hacker (CEH) principles: Zero trust network architecture, end-to-end TLS 1.3 encryption in transit, AES-256 at rest, strict least privilege, and zero persistence of raw unmasked telemetry on perimeter nodes.
+          </p>
+        </div>
+
+      </div>
+      <div class="p-4 border-t border-slate-800 bg-slate-950 flex justify-end">
+        <button type="button" onclick="closeRbacModal()" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700">Close Spec</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vanilla JavaScript Logic -->
+  <script>
+    // ==========================================
+    // DATA STORE: Case Studies & Projects Detail
+    // ==========================================
+    const projectData = {
+      'project-1': {
+        badge: 'Telehealth & Medical Telemetry',
+        title: 'Real-Time Diabetes Telemetry & EHR Integration',
+        category: 'telemetry',
+        overview: 'A clinical IoT and EHR modernization pipeline that integrates Continuous Glucose Monitoring (CGM) and Continuous Ketone Monitoring (CKM) streams from ambulatory patients into hospital Electronic Health Records with zero-trust security and automated Clinical Decision Support (CDS).',
+        problem: 'Type 1 and brittle Type 2 diabetic patients often experience nocturnal hypoglycemic plunges and impending diabetic ketoacidosis (DKA) hours before physical symptoms present. Traditional episodic clinic visits miss these dynamic excursions, while off-the-shelf consumer wearables lack secure, HIPAA-compliant transport into clinical EHRs.',
+        solution: 'Designed and deployed an event-driven ingestion broker utilizing HL7/FHIR endpoints. Automated rule-based algorithms detect rapid delta-drop in glucose levels (&gt;2 mg/dL/min drop below 80 mg/dL) or ketone levels &gt;1.5 mmol/L, instantly triggering clinician notification and automated patient SMS instructions.',
+        architecture: [
+          'Ingestion: TLS 1.3 encrypted sensor payloads via WebSocket / REST gateway',
+          'Telemetry Engine: Kafka-based event streaming with de-duplication and smoothing filters',
+          'Clinical Logic: CDS Hooks evaluating glycemic variability (CV%), Time In Range (TIR), and acute threshold alerts',
+          'EHR Delivery: FHIR Observation resources pushed into primary clinic charts',
+          'Security: OAuth 2.0 mutual TLS authentication with CEH zero-trust credential rotation'
+        ],
+        results: [
+          '42% reduction in unmanaged severe hypoglycemic episodes over a 12-month cohort',
+          'Clinician chart review latency reduced from 14 days post-visit to real-time alerts under 850 milliseconds',
+          'Average Time in Range (TIR) increased from 56% to 74% across enrolled diabetic patients'
+        ]
+      },
+      'project-2': {
+        badge: 'Clinical AI & Model Auditing',
+        title: 'Clinical AI Hallucination & Factuality Auditing',
+        category: 'ai-audit',
+        overview: 'Comprehensive Reinforcement Learning from Human Feedback (RLHF) and clinical verification framework created to audit and benchmark large language models (LLMs) specialized in medical diagnostics, pharmacology, and patient triage.',
+        problem: 'Standard foundation models often exhibit high linguistic fluency while hallucinating non-existent clinical trials, omitting critical drug-drug interactions (e.g., prescribing NSAIDs in severe CKD or combined macrolide-statin toxicity), and generating plausible yet fatal diagnostic logic.',
+        solution: 'Authored 450+ structured clinical evaluation rubrics covering complex multi-morbid scenarios (cardiovascular, metabolic, oncology, emergency triage). Established explicit grading criteria based on UpToDate, KDIGO, ADA, and AHA/ACC guidelines to evaluate diagnostic breadth, reasoning progression, and counter-factual robustness.',
+        architecture: [
+          'Rubric Corpus: 450+ multi-step clinical vignettes spanning outpatient, inpatient, and emergency triage',
+          'Scoring Dimensions: Diagnostic Accuracy, Pathophysiological Logic, Pharmacological Safety, Red-Flag Rule-Outs, Omission Severity',
+          'RLHF Directives: Formulating positive and negative paired demonstrations to steer model weights toward conservative, evidence-grounded responses',
+          'Drift Detection: Continuous regression testing across model checkpoints to prevent alignment decay'
+        ],
+        results: [
+          '99.4% adherence to established clinical guidelines on benchmarked evaluation subsets',
+          'Identified and neutralized 38 critical pharmacotherapeutic hallucination patterns prior to clinician release',
+          'Designed high-fidelity prompt templates that reduce diagnostic misattribution by 61%'
+        ]
+      },
+      'project-3': {
+        badge: 'Security & Clinical Access',
+        title: 'Automated Healthcare Access & Audit Logging',
+        category: 'security',
+        overview: 'Enterprise-grade Least-Privilege Role-Based Access Control (RBAC) and tamper-evident audit logging engine built for high-throughput clinical databases holding sensitive protected health information (PHI).',
+        problem: 'Healthcare institutions face severe insider threat risks and credential exfiltration vulnerabilities, compounded by the operational need for emergency "break-glass" access during code blue and critical patient handoffs without bureaucratic delays.',
+        solution: 'Leveraged Certified Ethical Hacker (CEH) principles to construct an automated RBAC engine with dynamic role provisioning, cryptographic audit log hashing (SHA-256 Merkle trees), and timed break-glass emergency OTP mechanisms for attending emergency clinicians.',
+        architecture: [
+          'Identity Management: Zero-trust attribute and role-based access validation with multi-factor tokens',
+          'Break-Glass Module: Emergency access workflow granting timed 1-hour elevated read rights with mandatory post-incident clinical justification',
+          'Audit Streaming: Asynchronous log shipment to immutable, append-only cold storage for forensic non-repudiation',
+          'Compliance Automation: Automated weekly anomaly detection flagging abnormal bulk chart exports and after-hours record lookups'
+        ],
+        results: [
+          '100% pass rate on third-party security posture and ISO/HIPAA regulatory audits',
+          'Emergency break-glass activation operational within 3 seconds, preserving critical care velocity while eliminating unauthorized access leaks',
+          'Zero unauthorized exfiltration incidents across simulated red-team penetration tests'
+        ]
+      }
+    };
+
+    // ==========================================
+    // UI CONTROLLERS & EVENT LISTENERS
+    // ==========================================
+
+    // Mobile Navigation Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+        mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        menuIconOpen.classList.toggle('hidden');
+        menuIconClose.classList.toggle('hidden');
+      });
+
+      // Close mobile menu when link clicked
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Mobile CV button
+    const mobileCvBtn = document.getElementById('mobile-cv-btn');
+    if (mobileCvBtn) {
+      mobileCvBtn.addEventListener('click', () => {
+        if (mobileMenu) mobileMenu.classList.add('hidden');
+        openCvModal();
+      });
+    }
+
+    // Desktop CV button
+    const openCvBtn = document.getElementById('open-cv-modal-btn');
+    if (openCvBtn) {
+      openCvBtn.addEventListener('click', openCvModal);
+    }
+
+    // Project Filtering Logic
+    const filterBtns = document.querySelectorAll('.project-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active state
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-cyan-500/20', 'text-cyan-300', 'border-cyan-500/40', 'active-filter');
+          b.classList.add('bg-slate-900', 'text-slate-400', 'border-slate-800');
+        });
+
+        // Set active
+        btn.classList.add('bg-cyan-500/20', 'text-cyan-300', 'border-cyan-500/40', 'active-filter');
+        btn.classList.remove('bg-slate-900', 'text-slate-400', 'border-slate-800');
+
+        const filter = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // ==========================================
+    // MODAL HANDLERS
+    // ==========================================
+
+    // Project Case Study Modal
+    function openProjectModal(projectId) {
+      const data = projectData[projectId];
+      if (!data) return;
+
+      document.getElementById('modal-project-badge').innerText = data.badge;
+      document.getElementById('modal-project-title').innerText = data.title;
+
+      const bodyEl = document.getElementById('modal-project-body');
+      bodyEl.innerHTML = `
+        <div class="space-y-4">
+          <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800">
+            <span class="text-xs font-mono text-cyan-400 font-semibold uppercase block mb-1">Executive Overview</span>
+            <p class="text-sm text-slate-300 leading-relaxed">${data.overview}</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800 space-y-1.5">
+              <span class="text-xs font-mono text-red-400 font-semibold uppercase block">The Clinical Challenge</span>
+              <p class="text-xs text-slate-300 leading-relaxed">${data.problem}</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800 space-y-1.5">
+              <span class="text-xs font-mono text-emerald-400 font-semibold uppercase block">Engineering & Clinical Strategy</span>
+              <p class="text-xs text-slate-300 leading-relaxed">${data.solution}</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+            <span class="text-xs font-mono text-teal-400 font-semibold uppercase block">Key Architectural Components</span>
+            <ul class="space-y-1.5 text-xs text-slate-300">
+              ${data.architecture.map(item => `<li class="flex items-start gap-2"><span class="text-teal-400 mt-0.5">▹</span><span>${item}</span></li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-xl bg-cyan-950/20 border border-cyan-800/40 space-y-2">
+            <span class="text-xs font-mono text-cyan-300 font-semibold uppercase block">Measured Clinical & Operational Outcomes</span>
+            <ul class="space-y-1.5 text-xs text-slate-200">
+              ${data.results.map(item => `<li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✔</span><span>${item}</span></li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+
+      const modal = document.getElementById('project-modal');
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('project-modal');
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    // CV Modal Handlers
+    function switchCvTab(tabName) {
+      const summaryContent = document.getElementById('cv-content-summary');
+      const pdfContent = document.getElementById('cv-content-pdf');
+      const summaryTabBtn = document.getElementById('cv-tab-summary');
+      const pdfTabBtn = document.getElementById('cv-tab-pdf');
+
+      if (tabName === 'summary') {
+        summaryContent.classList.remove('hidden');
+        pdfContent.classList.add('hidden');
+        summaryTabBtn.className = 'px-2.5 py-1 rounded font-medium bg-cyan-500/20 text-cyan-300';
+        pdfTabBtn.className = 'px-2.5 py-1 rounded font-medium text-slate-400 hover:text-white';
+      } else {
+        summaryContent.classList.add('hidden');
+        pdfContent.classList.remove('hidden');
+        pdfTabBtn.className = 'px-2.5 py-1 rounded font-medium bg-cyan-500/20 text-cyan-300';
+        summaryTabBtn.className = 'px-2.5 py-1 rounded font-medium text-slate-400 hover:text-white';
+      }
+    }
+
+    function openCvModal() {
+      const modal = document.getElementById('cv-modal');
+      switchCvTab('summary'); // Default to clean readable overview on open
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeCvModal() {
+      const modal = document.getElementById('cv-modal');
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    // Rubric Demo Modal
+    function openRubricDemoModal() {
+      document.getElementById('rubric-modal').classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeRubricModal() {
+      document.getElementById('rubric-modal').classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    // Telemetry Modal
+    function openTelemetryModal() {
+      document.getElementById('telemetry-modal').classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeTelemetryModal() {
+      document.getElementById('telemetry-modal').classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    // RBAC Modal
+    function openRbacDemoModal() {
+      document.getElementById('rbac-modal').classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeRbacModal() {
+      document.getElementById('rbac-modal').classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    // Close on escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeProjectModal();
+        closeCvModal();
+        closeRubricModal();
+        closeTelemetryModal();
+        closeRbacModal();
+      }
+    });
+
+    // Close modal on click outside backdrop
+    ['project-modal', 'cv-modal', 'rubric-modal', 'telemetry-modal', 'rbac-modal'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('click', (e) => {
+          if (e.target === el) {
+            el.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+          }
+        });
+      }
+    });
+
+    // ==========================================
+    // TOAST & CLIPBOARD HELPER
+    // ==========================================
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 shadow-xl text-slate-200 text-xs font-medium animate-fadeIn transition-all';
+      
+      const icon = type === 'success' 
+        ? `<svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`
+        : `<svg class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+
+      toast.innerHTML = `${icon}<span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    function copyToClipboard(text, customMessage = 'Copied to clipboard!') {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(customMessage);
+        }).catch(() => {
+          showToast('Could not access clipboard', 'error');
+        });
+      } else {
+        // Fallback for non-secure contexts
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showToast(customMessage);
+        } catch (e) {
+          showToast('Failed to copy', 'error');
+        }
+        document.body.removeChild(textarea);
+      }
+    }
+
+    // ==========================================
+    // CONTACT FORM INTERACTION
+    // ==========================================
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const org = document.getElementById('contact-org').value.trim();
+      const topic = document.getElementById('contact-topic').value;
+      const message = document.getElementById('contact-message').value.trim();
+
+      if (!name || !email || !message) {
+        showToast('Please fill in all required fields.', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submit-btn');
+      const submitText = document.getElementById('submit-btn-text');
+      const submitSpinner = document.getElementById('submit-btn-spinner');
+      const successBanner = document.getElementById('contact-success');
+
+      // Loading state
+      submitBtn.disabled = true;
+      submitText.textContent = 'Processing...';
+      submitSpinner.classList.remove('hidden');
+
+      setTimeout(() => {
+        // Revert button
+        submitBtn.disabled = false;
+        submitText.textContent = 'Send Consultation Request';
+        submitSpinner.classList.add('hidden');
+
+        // Show banner
+        successBanner.classList.remove('hidden');
+        showToast('Message sent! Initiating draft to Dr. Mohammed...', 'success');
+
+        // Trigger mailto as fallback so user's client opens directly with the details
+        const mailtoSubject = encodeURIComponent(`[Portfolio Inquiry] ${topic} - ${name} (${org || 'Independent'})`);
+        const mailtoBody = encodeURIComponent(`Hello Dr. Ibrahim Mohammed,\n\nName: ${name}\nEmail: ${email}\nOrganization: ${org || 'N/A'}\nFocus: ${topic}\n\nMessage:\n${message}\n\n---\nSent via portfolio website`);
+        
+        window.location.href = `mailto:ibrahimmohammedevuti@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+        // Reset form after short delay
+        setTimeout(() => {
+          document.getElementById('contact-form').reset();
+        }, 1500);
+
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
