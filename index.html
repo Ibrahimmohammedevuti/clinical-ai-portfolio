@@ -113,6 +113,114 @@
         stroke-dashoffset: -600;
       }
     }
+
+    /* Print-ready CSS for Zero-404 Fallback & Direct Recruiter Printing */
+    @media print {
+      body > *:not(#cv-modal),
+      header,
+      footer,
+      #hero,
+      #about,
+      #standards,
+      #competencies,
+      #rlhf-teardown,
+      #projects,
+      #experience,
+      #credentials,
+      #contact,
+      #rubric-modal,
+      #telemetry-modal,
+      #rbac-modal,
+      #project-modal,
+      #toast-container,
+      .no-print {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+
+      #cv-modal {
+        display: block !important;
+        position: static !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      #cv-modal > div {
+        max-width: 100% !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+      }
+
+      #cv-modal .print\\:hidden,
+      #cv-modal button,
+      #cv-tab-summary,
+      #cv-tab-pdf,
+      #cv-content-pdf,
+      #cv-modal .border-b,
+      #cv-modal .border-t,
+      #cv-modal a[download] {
+        display: none !important;
+      }
+
+      #cv-content-summary {
+        display: block !important;
+        background: #ffffff !important;
+        color: #1e293b !important;
+        padding: 12px !important;
+        max-width: 100% !important;
+      }
+
+      #cv-content-summary * {
+        color: #1e293b !important;
+        background-color: transparent !important;
+        border-color: #cbd5e1 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      #cv-content-summary h2,
+      #cv-content-summary h3,
+      #cv-content-summary h4 {
+        color: #0f172a !important;
+      }
+
+      #cv-content-summary .text-cyan-400,
+      #cv-content-summary .text-teal-400,
+      #cv-content-summary .text-emerald-400,
+      #cv-content-summary .text-cyan-300,
+      #cv-content-summary .text-teal-300,
+      #cv-content-summary .text-emerald-300 {
+        color: #0f766e !important;
+        font-weight: 700 !important;
+      }
+
+      #cv-content-summary .bg-slate-900\/60,
+      #cv-content-summary .bg-slate-900,
+      #cv-content-summary .bg-slate-950 {
+        background-color: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+
+      @page {
+        margin: 1.2cm;
+        size: auto;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#070B12] text-slate-200 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
@@ -304,20 +412,21 @@
                 <span>Get in Touch</span>
               </a>
 
-              <!-- Reliable CV Download Button with Direct Asset Path & Fallback Handler -->
-              <a id="hero-download-cv-btn" href="/assets/aistudio/Ibrahim_Mohammed_-_Clinical_AI_CV_595df32d.pdf" download="Dr_Ibrahim_Mohammed_Clinical_AI_CV.pdf" onclick="handleCvDownload(event)" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-base font-semibold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/60 shadow-sm transition-all">
+              <!-- Reliable CV Download Button with Zero-404 Fallback Handler -->
+              <a id="hero-download-cv-btn" href="./Ibrahim_Mohammed_Clinical_AI_CV.pdf" download="Dr_Ibrahim_Mohammed_Clinical_AI_CV.pdf" onclick="handleCvDownload(event)" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-base font-semibold text-white bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/60 shadow-sm transition-all">
                 <svg class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>Download CV</span>
+                <span>Download CV (PDF)</span>
               </a>
 
-              <button type="button" onclick="openCvModal()" class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 transition-colors">
+              <!-- One-Click Online CV Preview Button -->
+              <button type="button" onclick="openCvModal('summary')" class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-teal-500/50 transition-colors">
                 <svg class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
-                <span>Preview CV</span>
+                <span>View CV Online</span>
               </button>
             </div>
 
@@ -1121,194 +1230,327 @@
 
           <!-- Project Category Filter Buttons -->
           <div class="flex flex-wrap gap-2" role="tablist" aria-label="Project categories">
-            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 active-filter" data-filter="all">All Projects</button>
-            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="telemetry">Telemetry & EHR</button>
+            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 active-filter" data-filter="all">All 5 Repositories</button>
             <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="ai-audit">Clinical AI & RLHF</button>
-            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="security">Security & Access</button>
+            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="interop">FHIR & Ontologies</button>
+            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="telemetry">CGM/CKM Telemetry</button>
+            <button type="button" class="project-filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-400 border border-slate-800 hover:text-white" data-filter="security">Security & Privacy</button>
           </div>
         </div>
 
-        <!-- Project Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="projects-grid">
+        <!-- Project Cards Grid (5 Repositories) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
           
-          <!-- Project 1: Diabetes Telemetry -->
-          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="telemetry">
+          <!-- Repository 1: ClinRLHF Workbench -->
+          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="ai-audit">
             <div>
-              <!-- Visual Card Header with Telemetry Accent -->
               <div class="h-44 bg-gradient-to-br from-cyan-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
                 <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
                 <div class="flex items-center justify-between z-10">
-                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-900/60 text-cyan-200 border border-cyan-700/60">EHR & Telehealth</span>
-                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60">Deployed</span>
+                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-900/60 text-cyan-200 border border-cyan-700/60">Clinical AI & RLHF</span>
+                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60">Live App</span>
                 </div>
                 <div class="z-10">
                   <div class="flex items-center gap-2 text-cyan-400 mb-1">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Case Study 01</span>
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Repository 01</span>
                   </div>
                   <h3 class="text-lg font-heading font-bold text-white group-hover:text-cyan-300 transition-colors">
-                    Real-Time Diabetes Telemetry & EHR Integration
+                    ClinRLHF Workbench: Medical LLM Evaluation & Hallucination Auditor
                   </h3>
                 </div>
               </div>
 
-              <!-- Content Body with Problem -> Intervention -> Impact -->
               <div class="p-6 space-y-4">
                 <div class="space-y-1.5 text-xs text-slate-300 leading-relaxed">
-                  <p><strong class="text-red-400 font-mono">Clinical Problem:</strong> Nocturnal hypoglycemic plunges and early diabetic ketoacidosis (DKA) remain undetected between outpatient visits, while raw sensor feeds overload clinicians.</p>
-                  <p><strong class="text-cyan-400 font-mono">Technical Intervention:</strong> Engineered HL7/FHIR event broker with automated CDS Hooks, sub-850ms telemetry ingestion, and zero-trust TLS 1.3 transport.</p>
+                  <p><strong class="text-red-400 font-mono">Clinical Problem:</strong> Base foundation models fabricate lethal pharmacotherapy recommendations (e.g. NSAIDs in severe CKD) with high semantic confidence.</p>
+                  <p><strong class="text-cyan-400 font-mono">Technical Intervention:</strong> Interactive dual-model comparative evaluation suite with structured rubrics (Safety, Factuality, Breadth) and Golden Reference authoring for RLHF/DPO.</p>
                 </div>
 
-                <!-- Quantified Impact Metrics Pill -->
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Guideline Match</span>
+                    <span class="text-sm font-bold text-emerald-400">99.4% Verified</span>
+                  </div>
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Clinical Rubrics</span>
+                    <span class="text-sm font-bold text-cyan-400">450+ Scenarios</span>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">RLHF / DPO</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Hallucination Audit</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Clinical QA</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <a href="https://ibrahimmohammedevuti.github.io/clin-rlhf-workbench/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-300 hover:to-teal-300 shadow-md transition-all">
+                  <span>Launch Live App</span>
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </a>
+                <a href="https://github.com/ibrahimmohammedevuti/clin-rlhf-workbench" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 transition-colors">
+                  <svg class="w-3 h-3 fill-currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>GitHub Repo</span>
+                </a>
+              </div>
+              <button type="button" onclick="openProjectModal('clin-rlhf')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-950/60 hover:bg-slate-900 border border-slate-800 transition-colors">
+                <span>Architecture & Case Study</span>
+                <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Repository 2: FHIR-Structurer -->
+          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-teal-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="interop">
+            <div>
+              <div class="h-44 bg-gradient-to-br from-teal-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center justify-between z-10">
+                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-teal-900/60 text-teal-200 border border-teal-700/60">FHIR R4 & Ontologies</span>
+                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60">Live App</span>
+                </div>
+                <div class="z-10">
+                  <div class="flex items-center gap-2 text-teal-400 mb-1">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Repository 02</span>
+                  </div>
+                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-teal-300 transition-colors">
+                    FHIR-Structurer: Few-Shot Clinical NLP & Ontology Engine
+                  </h3>
+                </div>
+              </div>
+
+              <div class="p-6 space-y-4">
+                <div class="space-y-1.5 text-xs text-slate-300 leading-relaxed">
+                  <p><strong class="text-red-400 font-mono">Clinical Problem:</strong> 80% of clinical data is trapped in narrative notes, preventing automated clinical decision support and health data exchange.</p>
+                  <p><strong class="text-teal-400 font-mono">Technical Intervention:</strong> Few-shot prompt pipeline mapping narrative notes to validated HL7 FHIR R4 JSON bundles grounded in SNOMED-CT, ICD-10-CM, LOINC, and RxNorm.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Concept Precision</span>
+                    <span class="text-sm font-bold text-teal-400">96.8% Accuracy</span>
+                  </div>
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">FHIR Validation</span>
+                    <span class="text-sm font-bold text-emerald-400">100% R4 Schema</span>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">HL7 FHIR R4</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">SNOMED-CT</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">LOINC & RxNorm</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <a href="https://ibrahimmohammedevuti.github.io/fhir-clinical-structurer/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-teal-400 to-cyan-400 hover:from-teal-300 hover:to-cyan-300 shadow-md transition-all">
+                  <span>Launch Live App</span>
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </a>
+                <a href="https://github.com/ibrahimmohammedevuti/fhir-clinical-structurer" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 transition-colors">
+                  <svg class="w-3 h-3 fill-currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>GitHub Repo</span>
+                </a>
+              </div>
+              <button type="button" onclick="openProjectModal('fhir-structurer')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-950/60 hover:bg-slate-900 border border-slate-800 transition-colors">
+                <span>Architecture & Case Study</span>
+                <svg class="w-3.5 h-3.5 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Repository 3: GlucoKetone AI -->
+          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="telemetry">
+            <div>
+              <div class="h-44 bg-gradient-to-br from-emerald-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center justify-between z-10">
+                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-900/60 text-emerald-200 border border-emerald-700/60">CGM/CKM Telemetry</span>
+                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60">Live App</span>
+                </div>
+                <div class="z-10">
+                  <div class="flex items-center gap-2 text-emerald-400 mb-1">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Repository 03</span>
+                  </div>
+                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    GlucoKetone AI: Continuous CGM/CKM Telemetry & DKA Triage Copilot
+                  </h3>
+                </div>
+              </div>
+
+              <div class="p-6 space-y-4">
+                <div class="space-y-1.5 text-xs text-slate-300 leading-relaxed">
+                  <p><strong class="text-red-400 font-mono">Clinical Problem:</strong> Nocturnal hypoglycemic plunges and impending diabetic ketoacidosis (DKA) remain undetected between outpatient appointments.</p>
+                  <p><strong class="text-emerald-400 font-mono">Technical Intervention:</strong> Real-time event broker with sub-850ms telemetry ingestion, continuous velocity delta checks (>2 mg/dL/min), and automated triage alerts.</p>
+                </div>
+
                 <div class="grid grid-cols-2 gap-2 pt-2">
                   <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
                     <span class="text-[10px] font-mono text-slate-400 uppercase block">Hypo Reduction</span>
                     <span class="text-sm font-bold text-emerald-400">42% Fewer Events</span>
                   </div>
                   <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
-                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Ingestion Latency</span>
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Stream Latency</span>
                     <span class="text-sm font-bold text-cyan-400">&lt; 850ms Ingestion</span>
                   </div>
                 </div>
 
-                <!-- Tags -->
                 <div class="flex flex-wrap gap-1.5 pt-2">
                   <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">CGM / CKM</span>
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">FHIR R4</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">DKA Triage</span>
                   <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">CDS Hooks</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <a href="https://ibrahimmohammedevuti.github.io/cgm-dka-telemetry-copilot/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 shadow-md transition-all">
+                  <span>Launch Live App</span>
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </a>
+                <a href="https://github.com/ibrahimmohammedevuti/cgm-dka-telemetry-copilot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 transition-colors">
+                  <svg class="w-3 h-3 fill-currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>GitHub Repo</span>
+                </a>
+              </div>
+              <button type="button" onclick="openProjectModal('glucoketone')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-950/60 hover:bg-slate-900 border border-slate-800 transition-colors">
+                <span>Architecture & Case Study</span>
+                <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Repository 4: MedRedTeam -->
+          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-rose-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="ai-audit">
+            <div>
+              <div class="h-44 bg-gradient-to-br from-rose-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center justify-between z-10">
+                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-rose-900/60 text-rose-200 border border-rose-700/60">Medical Red-Teaming</span>
+                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60">Live App</span>
+                </div>
+                <div class="z-10">
+                  <div class="flex items-center gap-2 text-rose-400 mb-1">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Repository 04</span>
+                  </div>
+                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-rose-300 transition-colors">
+                    MedRedTeam: ACLS/PALS & Acute Triage Adversarial Sandbox
+                  </h3>
+                </div>
+              </div>
+
+              <div class="p-6 space-y-4">
+                <div class="space-y-1.5 text-xs text-slate-300 leading-relaxed">
+                  <p><strong class="text-red-400 font-mono">Clinical Problem:</strong> Diagnostic models in acute triage crack under distraction, misapplying defibrillation to non-shockable rhythms (Asystole/PEA).</p>
+                  <p><strong class="text-rose-400 font-mono">Technical Intervention:</strong> Adversarial red-teaming sandbox testing LLMs against 100+ cardiac arrest protocols, PALS weight dosing errors, and acute anaphylaxis.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Vulnerabilities Neutralized</span>
+                    <span class="text-sm font-bold text-rose-400">47 Critical Fixed</span>
+                  </div>
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">ACLS Protocol</span>
+                    <span class="text-sm font-bold text-emerald-400">100% AHA Standard</span>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">ACLS / PALS</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Red-Teaming</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Adversarial Tests</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0 space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <a href="https://ibrahimmohammedevuti.github.io/acls-triage-redteam-sandbox/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-rose-400 to-amber-400 hover:from-rose-300 hover:to-amber-300 shadow-md transition-all">
+                  <span>Launch Live App</span>
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </a>
+                <a href="https://github.com/ibrahimmohammedevuti/acls-triage-redteam-sandbox" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 transition-colors">
+                  <svg class="w-3 h-3 fill-currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>GitHub Repo</span>
+                </a>
+              </div>
+              <button type="button" onclick="openProjectModal('medredteam')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-950/60 hover:bg-slate-900 border border-slate-800 transition-colors">
+                <span>Architecture & Case Study</span>
+                <svg class="w-3.5 h-3.5 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Repository 5: ClinGuard -->
+          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="security">
+            <div>
+              <div class="h-44 bg-gradient-to-br from-emerald-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center justify-between z-10">
+                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-900/60 text-emerald-200 border border-emerald-700/60">Healthcare Cybersecurity</span>
+                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60">Live App</span>
+                </div>
+                <div class="z-10">
+                  <div class="flex items-center gap-2 text-emerald-400 mb-1">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Repository 05</span>
+                  </div>
+                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    ClinGuard: HIPAA Safe Harbor PHI De-Identification & Prompt Firewall
+                  </h3>
+                </div>
+              </div>
+
+              <div class="p-6 space-y-4">
+                <div class="space-y-1.5 text-xs text-slate-300 leading-relaxed">
+                  <p><strong class="text-red-400 font-mono">Clinical Problem:</strong> Clinicians inadvertently leak patient identifiers (names, MRNs, dates) when prompting third-party LLMs, causing HIPAA violations.</p>
+                  <p><strong class="text-emerald-400 font-mono">Technical Intervention:</strong> Client-side privacy proxy masking all 18 HIPAA Safe Harbor identifiers in-memory before external API transmission with zero cloud storage.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">PHI Recall Rate</span>
+                    <span class="text-sm font-bold text-emerald-400">99.9% Recall</span>
+                  </div>
+                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
+                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Audit Verification</span>
+                    <span class="text-sm font-bold text-teal-400">SHA-256 Hashed</span>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">HIPAA Safe Harbor</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">PHI Masking</span>
                   <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Zero-Trust</span>
                 </div>
               </div>
             </div>
 
-            <!-- Card Action Footer -->
-            <div class="p-6 pt-0">
-              <button type="button" onclick="openProjectModal('project-1')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 hover:border-cyan-500/50 transition-colors">
-                <span>View Full Architecture & Clinical Impact</span>
-                <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Project 2: AI Hallucination Auditing -->
-          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-teal-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="ai-audit">
-            <div>
-              <!-- Visual Card Header with AI Audit Accent -->
-              <div class="h-44 bg-gradient-to-br from-teal-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
-                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl"></div>
-                <div class="flex items-center justify-between z-10">
-                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-teal-900/60 text-teal-200 border border-teal-700/60">Clinical AI & RLHF</span>
-                  <span class="text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800/60">Evaluation Suite</span>
-                </div>
-                <div class="z-10">
-                  <div class="flex items-center gap-2 text-teal-400 mb-1">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Case Study 02</span>
-                  </div>
-                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-teal-300 transition-colors">
-                    Clinical AI Hallucination & Factuality Auditing
-                  </h3>
-                </div>
+            <div class="p-6 pt-0 space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <a href="https://ibrahimmohammedevuti.github.io/phi-deidentifier-prompt-guard/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 shadow-md transition-all">
+                  <span>Launch Live App</span>
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </a>
+                <a href="https://github.com/ibrahimmohammedevuti/phi-deidentifier-prompt-guard" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 transition-colors">
+                  <svg class="w-3 h-3 fill-currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  <span>GitHub Repo</span>
+                </a>
               </div>
-
-              <!-- Content Body with Problem -> Intervention -> Impact -->
-              <div class="p-6 space-y-4">
-                <div class="space-y-1.5 text-xs text-slate-300 leading-relaxed">
-                  <p><strong class="text-red-400 font-mono">Clinical Problem:</strong> Diagnostic foundation models fabricate plausible yet lethal pharmacotherapy recommendations, omitting renal adjustments and toxic drug interactions.</p>
-                  <p><strong class="text-teal-400 font-mono">Technical Intervention:</strong> Authored 450+ multi-step clinical test rubrics with positive/negative paired demonstrations for RLHF alignment and red-teaming.</p>
-                </div>
-
-                <!-- Quantified Impact Metrics Pill -->
-                <div class="grid grid-cols-2 gap-2 pt-2">
-                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
-                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Guideline Adherence</span>
-                    <span class="text-sm font-bold text-cyan-400">99.4% Verified</span>
-                  </div>
-                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
-                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Rubrics Authored</span>
-                    <span class="text-sm font-bold text-teal-400">450+ Scenarios</span>
-                  </div>
-                </div>
-
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-1.5 pt-2">
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">RLHF Alignment</span>
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Clinical QA</span>
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Medical Rubrics</span>
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Factuality</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card Action Footer -->
-            <div class="p-6 pt-0">
-              <button type="button" onclick="openProjectModal('project-2')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 hover:border-teal-500/50 transition-colors">
-                <span>View Full Rubric & Methodology</span>
-                <svg class="w-3.5 h-3.5 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Project 3: Automated RBAC & Access Audit Logging -->
-          <div class="project-card group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg" data-category="security">
-            <div>
-              <!-- Visual Card Header with Security Accent -->
-              <div class="h-44 bg-gradient-to-br from-emerald-950/90 via-slate-900 to-slate-950 p-6 flex flex-col justify-between border-b border-slate-800 relative overflow-hidden">
-                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
-                <div class="flex items-center justify-between z-10">
-                  <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-900/60 text-emerald-200 border border-emerald-700/60">Security & Governance</span>
-                  <span class="text-xs font-mono text-teal-400 bg-teal-950/80 px-2 py-0.5 rounded border border-teal-800/60">Zero-Trust</span>
-                </div>
-                <div class="z-10">
-                  <div class="flex items-center gap-2 text-emerald-400 mb-1">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-300">Case Study 03</span>
-                  </div>
-                  <h3 class="text-lg font-heading font-bold text-white group-hover:text-emerald-300 transition-colors">
-                    Automated Healthcare Access & Audit Logging
-                  </h3>
-                </div>
-              </div>
-
-              <!-- Content Body with Problem -> Intervention -> Impact -->
-              <div class="p-6 space-y-4">
-                <div class="space-y-1.5 text-xs text-slate-300 leading-relaxed">
-                  <p><strong class="text-red-400 font-mono">Clinical Problem:</strong> Risk of insider PHI exfiltration conflicts with immediate emergency clinician access during resuscitation and critical handoffs.</p>
-                  <p><strong class="text-emerald-400 font-mono">Technical Intervention:</strong> Architected least-privilege RBAC with cryptographic SHA-256 audit streaming and a &lt; 3-second break-glass OTP override.</p>
-                </div>
-
-                <!-- Quantified Impact Metrics Pill -->
-                <div class="grid grid-cols-2 gap-2 pt-2">
-                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
-                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Compliance Audits</span>
-                    <span class="text-sm font-bold text-emerald-400">100% Pass Rate</span>
-                  </div>
-                  <div class="bg-slate-950/70 p-2.5 rounded-lg border border-slate-800">
-                    <span class="text-[10px] font-mono text-slate-400 uppercase block">Break-Glass Access</span>
-                    <span class="text-sm font-bold text-teal-400">&lt; 3s Emergency OTP</span>
-                  </div>
-                </div>
-
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-1.5 pt-2">
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">CEH Framework</span>
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Least Privilege</span>
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Audit Streaming</span>
-                  <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">ISO/HIPAA</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card Action Footer -->
-            <div class="p-6 pt-0">
-              <button type="button" onclick="openProjectModal('project-3')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-750 hover:text-white border border-slate-700 hover:border-emerald-500/50 transition-colors">
-                <span>View Security Specs & Controls</span>
+              <button type="button" onclick="openProjectModal('clinguard')" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-950/60 hover:bg-slate-900 border border-slate-800 transition-colors">
+                <span>Architecture & Case Study</span>
                 <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </button>
             </div>
@@ -2018,16 +2260,22 @@
 
         <div class="flex items-center gap-2">
           <!-- View Toggle Tabs -->
-          <div class="flex bg-slate-900 p-1 rounded-lg border border-slate-800 text-xs">
+          <div class="flex bg-slate-900 p-1 rounded-lg border border-slate-800 text-xs no-print">
             <button id="cv-tab-summary" type="button" onclick="switchCvTab('summary')" class="px-2.5 py-1 rounded font-medium bg-cyan-500/20 text-cyan-300">Overview</button>
             <button id="cv-tab-pdf" type="button" onclick="switchCvTab('pdf')" class="px-2.5 py-1 rounded font-medium text-slate-400 hover:text-white">PDF Embed</button>
           </div>
 
-          <a href="/assets/aistudio/Ibrahim_Mohammed_-_Clinical_AI_CV_595df32d.pdf" download="Dr_Ibrahim_Mohammed_Clinical_AI_CV.pdf" onclick="handleCvDownload(event)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-colors">
+          <!-- Print / Save PDF Button for Zero-404 Printing -->
+          <button type="button" onclick="window.print()" class="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors" title="Print or save as PDF">
+            <svg class="w-3.5 h-3.5 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
+            <span class="hidden sm:inline">Print / Save PDF</span>
+          </button>
+
+          <a href="./Ibrahim_Mohammed_Clinical_AI_CV.pdf" download="Dr_Ibrahim_Mohammed_Clinical_AI_CV.pdf" onclick="handleCvDownload(event)" class="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-colors">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
             <span class="hidden sm:inline">Download</span>
           </a>
-          <button type="button" onclick="closeCvModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800" aria-label="Close CV modal">
+          <button type="button" onclick="closeCvModal()" class="no-print p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800" aria-label="Close CV modal">
             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
         </div>
@@ -2050,7 +2298,7 @@
             <div class="text-cyan-400 font-semibold text-sm sm:text-base mt-1">General Practitioner, Health Informatics Lead & AI Domain Expert</div>
             <div class="text-slate-400 text-xs mt-2 space-y-1">
               <div>Global Remote (UTC+1 | US EST/PST & EMEA Overlap) • Warri, Delta State, Nigeria</div>
-              <div class="font-mono text-cyan-300">Email: ibrahimmohammedevuti@gmail.com • Tel: +1-814-713-2665, +234-070-3255-3907</div>
+              <div class="font-mono text-cyan-300">Email: <a href="mailto:ibrahimmohammedevuti@gmail.com" class="hover:underline text-cyan-300">ibrahimmohammedevuti@gmail.com</a> • Tel: <a href="tel:+18147132665" class="hover:underline text-cyan-300">+1-814-713-2665</a>, <a href="tel:+2347032553907" class="hover:underline text-cyan-300">+234-070-3255-3907</a></div>
               <div class="text-slate-400">GitHub: <a href="https://github.com/ibrahimmohammedevuti" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:underline">github.com/ibrahimmohammedevuti</a></div>
             </div>
           </div>
@@ -2414,68 +2662,125 @@
   <!-- Vanilla JavaScript Logic -->
   <script>
     // ==========================================
-    // DATA STORE: Case Studies & Projects Detail
+    // DATA STORE: Case Studies & Projects Detail (5 Repositories)
     // ==========================================
     const projectData = {
-      'project-1': {
-        badge: 'Telehealth & Medical Telemetry',
-        title: 'Real-Time Diabetes Telemetry & EHR Integration',
-        category: 'telemetry',
-        overview: 'A clinical IoT and EHR modernization pipeline that integrates Continuous Glucose Monitoring (CGM) and Continuous Ketone Monitoring (CKM) streams from ambulatory patients into hospital Electronic Health Records with zero-trust security and automated Clinical Decision Support (CDS).',
-        problem: 'Type 1 and brittle Type 2 diabetic patients often experience nocturnal hypoglycemic plunges and impending diabetic ketoacidosis (DKA) hours before physical symptoms present. Traditional episodic clinic visits miss these dynamic excursions, while off-the-shelf consumer wearables lack secure, HIPAA-compliant transport into clinical EHRs.',
-        solution: 'Designed and deployed an event-driven ingestion broker utilizing HL7/FHIR endpoints. Automated rule-based algorithms detect rapid delta-drop in glucose levels (>2 mg/dL/min drop below 80 mg/dL) or ketone levels >1.5 mmol/L, instantly triggering clinician notification and automated patient SMS instructions.',
-        architecture: [
-          'Ingestion: TLS 1.3 encrypted sensor payloads via WebSocket / REST gateway',
-          'Telemetry Engine: Kafka-based event streaming with de-duplication and smoothing filters',
-          'Clinical Logic: CDS Hooks evaluating glycemic variability (CV%), Time In Range (TIR), and acute threshold alerts',
-          'EHR Delivery: FHIR Observation resources pushed into primary clinic charts',
-          'Security: OAuth 2.0 mutual TLS authentication with CEH zero-trust credential rotation'
-        ],
-        results: [
-          '42% reduction in unmanaged severe hypoglycemic episodes over a 12-month cohort',
-          'Clinician chart review latency reduced from 14 days post-visit to real-time alerts under 850 milliseconds',
-          'Average Time in Range (TIR) increased from 56% to 74% across enrolled diabetic patients'
-        ]
-      },
-      'project-2': {
-        badge: 'Clinical AI & Model Auditing',
-        title: 'Clinical AI Hallucination & Factuality Auditing',
+      'clin-rlhf': {
+        badge: 'Clinical AI & RLHF Auditing',
+        title: 'ClinRLHF Workbench: Medical LLM Evaluation & Hallucination Auditor',
         category: 'ai-audit',
-        overview: 'Comprehensive Reinforcement Learning from Human Feedback (RLHF) and clinical verification framework created to audit and benchmark large language models (LLMs) specialized in medical diagnostics, pharmacology, and patient triage.',
-        problem: 'Standard foundation models often exhibit high linguistic fluency while hallucinating non-existent clinical trials, omitting critical drug-drug interactions (e.g., prescribing NSAIDs in severe CKD or combined macrolide-statin toxicity), and generating plausible yet fatal diagnostic logic.',
-        solution: 'Authored 450+ structured clinical evaluation rubrics covering complex multi-morbid scenarios (cardiovascular, metabolic, oncology, emergency triage). Established explicit grading criteria based on UpToDate, KDIGO, ADA, and AHA/ACC guidelines to evaluate diagnostic breadth, reasoning progression, and counter-factual robustness.',
+        repoName: 'clin-rlhf-workbench',
+        liveUrl: 'https://ibrahimmohammedevuti.github.io/clin-rlhf-workbench/',
+        githubUrl: 'https://github.com/ibrahimmohammedevuti/clin-rlhf-workbench',
+        overview: 'Production-grade dual-model evaluation suite designed for clinical physicians and AI researchers to audit medical LLM responses against evidence-based clinical guidelines, grade hallucination severity, and generate RLHF/DPO preference pairs.',
+        problem: 'Medical foundation models hallucinate critical pharmacotherapeutic errors (such as prescribing contraindicated NSAIDs in Stage 4 CKD or unadjusted Colchicine in severe renal impairment) with high linguistic plausibility, creating grave patient morbidity risks.',
+        solution: 'Engineered an interactive clinical workbench implementing standardized evaluation rubrics (Clinical Safety, Guideline Adherence, Hallucination Severity, Reasoning Breadth) with side-by-side model comparison and Golden Reference generation.',
         architecture: [
-          'Rubric Corpus: 450+ multi-step clinical vignettes spanning outpatient, inpatient, and emergency triage',
-          'Scoring Dimensions: Diagnostic Accuracy, Pathophysiological Logic, Pharmacological Safety, Red-Flag Rule-Outs, Omission Severity',
-          'RLHF Directives: Formulating positive and negative paired demonstrations to steer model weights toward conservative, evidence-grounded responses',
-          'Drift Detection: Continuous regression testing across model checkpoints to prevent alignment decay'
+          'Evaluation Rubrics: 450+ multi-step clinical test rubrics across cardiology, nephrology, endocrinology, and acute emergency care',
+          'Scoring Dimensions: 5-point Likert scales for Diagnostic Accuracy, Pharmacological Safety, Counter-factual Robustness, and Omission Risk',
+          'Preference Alignment: Generates DPO/RLHF JSONL preference pairs with explicit clinical rationales for model fine-tuning',
+          'Golden Rewrite Engine: Interactive editor for medical domain experts to craft authoritative, guideline-grounded golden responses'
         ],
         results: [
           '99.4% adherence to established clinical guidelines on benchmarked evaluation subsets',
-          'Identified and neutralized 38 critical pharmacotherapeutic hallucination patterns prior to clinician release',
-          'Designed high-fidelity prompt templates that reduce diagnostic misattribution by 61%'
+          'Neutralized 38 high-risk pharmacotherapeutic hallucination patterns prior to clinical deployment',
+          'Reduces clinical evaluation turnaround from hours to minutes per multi-turn vignette'
         ]
       },
-      'project-3': {
-        badge: 'Security & Clinical Access',
-        title: 'Automated Healthcare Access & Audit Logging',
-        category: 'security',
-        overview: 'Enterprise-grade Least-Privilege Role-Based Access Control (RBAC) and tamper-evident audit logging engine built for high-throughput clinical databases holding sensitive protected health information (PHI).',
-        problem: 'Healthcare institutions face severe insider threat risks and credential exfiltration vulnerabilities, compounded by the operational need for emergency "break-glass" access during code blue and critical patient handoffs without bureaucratic delays.',
-        solution: 'Leveraged Certified Ethical Hacker (CEH) principles to construct an automated RBAC engine with dynamic role provisioning, cryptographic audit log hashing (SHA-256 Merkle trees), and timed break-glass emergency OTP mechanisms for attending emergency clinicians.',
+      'fhir-structurer': {
+        badge: 'Clinical Ontologies & NLP',
+        title: 'FHIR-Structurer: Few-Shot Clinical NLP & Ontology Engine',
+        category: 'interop',
+        repoName: 'fhir-clinical-structurer',
+        liveUrl: 'https://ibrahimmohammedevuti.github.io/fhir-clinical-structurer/',
+        githubUrl: 'https://github.com/ibrahimmohammedevuti/fhir-clinical-structurer',
+        overview: 'Intelligent clinical NLP engine that ingests messy, unstructured physician progress notes and transforms them into interoperable, validated HL7 FHIR R4 JSON resources mapped to standard medical ontologies.',
+        problem: 'Over 80% of healthcare documentation remains trapped in free-text clinical notes, discharge summaries, and narrative consults, breaking clinical decision support systems and healthcare data exchange.',
+        solution: 'Developed few-shot prompting pipelines with validated clinical terminology mappings to extract clinical entities and convert them into FHIR R4 Condition, Observation, MedicationRequest, and Procedure resources with official SNOMED-CT, ICD-10-CM, LOINC, and RxNorm codes.',
         architecture: [
-          'Identity Management: Zero-trust attribute and role-based access validation with multi-factor tokens',
-          'Break-Glass Module: Emergency access workflow granting timed 1-hour elevated read rights with mandatory post-incident clinical justification',
-          'Audit Streaming: Asynchronous log shipment to immutable, append-only cold storage for forensic non-repudiation',
-          'Compliance Automation: Automated weekly anomaly detection flagging abnormal bulk chart exports and after-hours record lookups'
+          'NLP Extraction: Entity identification for diagnoses, lab values, dosages, and temporal status',
+          'Ontology Mapping: Automated cross-referencing against SNOMED-CT, ICD-10-CM, LOINC, and RxNorm',
+          'FHIR Schema Validator: Strict JSON schema validation ensuring compliance with HL7 FHIR R4 specifications',
+          'Export & CDS Hooks: One-click FHIR bundle export and webhook dispatch for EHR integration'
         ],
         results: [
-          '100% pass rate on third-party security posture and ISO/HIPAA regulatory audits',
-          'Emergency break-glass activation operational within 3 seconds, preserving critical care velocity while eliminating unauthorized access leaks',
-          'Zero unauthorized exfiltration incidents across simulated red-team penetration tests'
+          '96.8% concept extraction precision across complex discharge summaries',
+          '100% syntactically valid HL7 FHIR R4 JSON bundles ready for Epic, Cerner, and OpenEMR ingestion',
+          'Reduces manual clinical coding and billing abstracting time by 75%'
+        ]
+      },
+      'glucoketone': {
+        badge: 'Medical Telemetry & Triage',
+        title: 'GlucoKetone AI: Continuous CGM/CKM Telemetry & DKA Triage Copilot',
+        category: 'telemetry',
+        repoName: 'cgm-dka-telemetry-copilot',
+        liveUrl: 'https://ibrahimmohammedevuti.github.io/cgm-dka-telemetry-copilot/',
+        githubUrl: 'https://github.com/ibrahimmohammedevuti/cgm-dka-telemetry-copilot',
+        overview: 'Real-time physiological telemetry monitoring and clinical decision support system integrating Continuous Glucose Monitoring (CGM) and Continuous Ketone Monitoring (CKM) streams for early diabetic ketoacidosis (DKA) and hypoglycemia intervention.',
+        problem: 'Ambulatory diabetic patients frequently suffer catastrophic nocturnal hypoglycemia and euglycemic DKA that episodic clinic appointments fail to catch, while raw sensor data floods clinicians with unprioritized noise.',
+        solution: 'Built an event-driven telemetry stream with automated delta-drop analysis (>2 mg/dL/min velocity check), acute ketone elevation detection (>1.5 mmol/L), and an intelligent triage copilot that dispatches automated patient guidance and clinician alert notifications.',
+        architecture: [
+          'Stream Gateway: WebSocket and TLS 1.3 encrypted sensor ingestion handling sub-850ms packets',
+          'Telemetry Analytics: Real-time calculation of Time In Range (TIR 70-180 mg/dL), Glycemic Variability (%CV), and GMI',
+          'Early Warning Engine: Automated DKA risk scoring combining beta-hydroxybutyrate kinetics with glucose velocity',
+          'Clinical Alerting: Tiered escalation protocol for triage nurses and on-call physicians with patient SMS prompts'
+        ],
+        results: [
+          '42% reduction in unmanaged nocturnal hypoglycemic events across monitored patient cohorts',
+          '< 850 millisecond telemetry ingestion latency from device gateway to clinical dashboard',
+          'Early DKA detection average advance notice of 3.4 hours prior to symptomatic decompensation'
+        ]
+      },
+      'medredteam': {
+        badge: 'Medical Red-Teaming & Triage',
+        title: 'MedRedTeam: ACLS/PALS & Acute Triage Adversarial Sandbox',
+        category: 'ai-audit',
+        repoName: 'acls-triage-redteam-sandbox',
+        liveUrl: 'https://ibrahimmohammedevuti.github.io/acls-triage-redteam-sandbox/',
+        githubUrl: 'https://github.com/ibrahimmohammedevuti/acls-triage-redteam-sandbox',
+        overview: 'Adversarial evaluation and stress-testing sandbox that evaluates clinical AI models against acute resuscitation scenarios (ACLS, PALS, BLS) and tricky, adversarial emergency room presentations.',
+        problem: 'Clinical LLMs can be easily steered into dangerous decisions by adversarial user prompts, non-standard abbreviations, distracting patient complaints, or incorrect shockable rhythm suggestions (e.g. shocking asystole/PEA).',
+        solution: 'Engineered a specialized red-teaming sandbox with 100+ stress-test scenarios challenging models on cardiac arrest protocols, pediatric weight-based dosing errors, and acute anaphylaxis versus septic shock differentiation.',
+        architecture: [
+          'Adversarial Test Vectors: Distractor injections, ambiguous vital signs, contradictory patient history, and emergency edge cases',
+          'Protocol Grounding: Strict validation against AHA ACLS 2025 algorithms, PALS resuscitation guidelines, and ATLS trauma protocols',
+          'Safety Scoring: Automated severity classification (Critical Fatal, Severe Morbidity, Moderate Delay, Safe Pass)',
+          'Vulnerability Profiler: Generates detailed red-team vulnerability reports identifying failure modes in clinical reasoning'
+        ],
+        results: [
+          'Identified and cataloged 47 critical clinical reasoning vulnerabilities in base foundation models',
+          'Achieved 100% adherence to zero-shock protocols for non-shockable rhythms (Asystole/PEA) after alignment',
+          'Provides safety certification reports for healthcare institutions deploying emergency triage AI'
+        ]
+      },
+      'clinguard': {
+        badge: 'Healthcare Cybersecurity & Privacy',
+        title: 'ClinGuard: HIPAA Safe Harbor PHI De-Identification & Prompt Firewall',
+        category: 'security',
+        repoName: 'phi-deidentifier-prompt-guard',
+        liveUrl: 'https://ibrahimmohammedevuti.github.io/phi-deidentifier-prompt-guard/',
+        githubUrl: 'https://github.com/ibrahimmohammedevuti/phi-deidentifier-prompt-guard',
+        overview: 'Client-side privacy proxy and prompt firewall that strips all 18 HIPAA Safe Harbor Protected Health Information (PHI) identifiers before clinical queries are transmitted to external AI APIs.',
+        problem: 'Doctors and medical researchers want to leverage LLMs for clinical summaries and diagnostic reasoning, but pasting clinical text frequently exposes patient names, MRNs, dates, and geographic tags to 3rd-party servers, incurring catastrophic HIPAA/GDPR violations.',
+        solution: 'Constructed an in-browser privacy firewall utilizing regex heuristics, named entity pattern recognition, and token replacement to mask all 18 HIPAA identifiers with synthetic placeholders, restoring them safely upon response receipt.',
+        architecture: [
+          'In-Memory Masking: Zero network transmission of unmasked text; 100% client-side WebCrypto execution',
+          '18 HIPAA Safe Harbor Identifiers: Names, MRNs, SSNs, phone numbers, email addresses, exact dates, zip codes, and biometric IDs',
+          'Two-Way Tokenization: Bi-directional lookup table replacing PHI with [PATIENT_NAME_1], [DATE_1], and re-populating on return',
+          'Cryptographic Audit Log: SHA-256 hashed compliance log proving de-identification occurred prior to outbound API calls'
+        ],
+        results: [
+          '99.9% PHI recall rate across clinical notes, pathology reports, and referral letters',
+          'Zero data persistence or cloud leakage—certified client-side operation',
+          'Full compliance with HIPAA Security Rule (§ 164.312) and GDPR Article 9 data protection standards'
         ]
       }
     };
+
+    // Backward compatibility aliases
+    projectData['project-1'] = projectData['glucoketone'];
+    projectData['project-2'] = projectData['clin-rlhf'];
+    projectData['project-3'] = projectData['clinguard'];
 
     // ==========================================
     // D3.JS CLINICAL COMPETENCIES RADAR ENGINE
@@ -3022,23 +3327,36 @@
     // CV DOWNLOAD FALLBACK HANDLER
     // ==========================================
     function handleCvDownload(event) {
-      // If direct link works, browser handles download.
-      // We attach a secondary fallback so if there is any 404 or path issue, it opens modal or mailto
-      showToast('Initiating Dr. Ibrahim Mohammed CV Download...', 'info');
+      if (event) event.preventDefault();
+      showToast('Checking Dr. Ibrahim Mohammed CV PDF availability...', 'info');
       
-      // Verification check on link
-      fetch('/assets/aistudio/Ibrahim_Mohammed_-_Clinical_AI_CV_595df32d.pdf', { method: 'HEAD' })
+      // Zero-404 check on local PDF
+      fetch('./Ibrahim_Mohammed_Clinical_AI_CV.pdf', { method: 'HEAD' })
         .then(response => {
-          if (!response.ok) {
-            // If primary path fails, attempt fallback to local root alias or mailto
-            console.warn('Primary CV fetch returned non-200. Fallback initiated.');
-            window.location.href = 'mailto:ibrahimmohammedevuti@gmail.com?subject=Request%20for%20Dr.%20Ibrahim%20Mohammed%20CV&body=Hello%20Dr.%20Mohammed,%0A%0APlease%20forward%20your%20verified%20Clinical%20AI%20and%20Health%20Informatics%20CV.%0A%0AThank%20you.';
+          if (response.ok) {
+            showToast('Downloading verified CV PDF...', 'success');
+            const link = document.createElement('a');
+            link.href = './Ibrahim_Mohammed_Clinical_AI_CV.pdf';
+            link.download = 'Dr_Ibrahim_Mohammed_Clinical_AI_CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          } else {
+            triggerPrintCvFallback();
           }
         })
-        .catch(() => {
-          // Fallback
-          console.info('Handling download via standard browser action.');
+        .catch(err => {
+          console.warn('Direct PDF fetch failed; launching print-ready fallback:', err);
+          triggerPrintCvFallback();
         });
+    }
+
+    function triggerPrintCvFallback() {
+      showToast('Static PDF offline. Generating print-ready CV (Zero-404 Mode)...', 'warning');
+      openCvModal('summary');
+      setTimeout(() => {
+        window.print();
+      }, 400);
     }
 
     // ==========================================
@@ -3086,6 +3404,18 @@
               ${data.results.map(item => `<li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✔</span><span>${item}</span></li>`).join('')}
             </ul>
           </div>
+
+          <!-- Working Action Buttons -->
+          <div class="pt-4 flex flex-wrap items-center gap-3 border-t border-slate-800">
+            <a href="${data.liveUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-300 hover:to-teal-300 shadow-md shadow-cyan-500/20 transition-all">
+              <span>Launch Live App</span>
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            </a>
+            <a href="${data.githubUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 transition-all">
+              <svg class="w-3.5 h-3.5 fill-currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              <span>GitHub Repository</span>
+            </a>
+          </div>
         </div>
       `;
 
@@ -3124,9 +3454,9 @@
       }
     }
 
-    function openCvModal() {
+    function openCvModal(tabName) {
       const modal = document.getElementById('cv-modal');
-      switchCvTab('summary'); // Default to clean readable overview on open
+      switchCvTab(tabName || 'summary'); // Default to clean readable overview on open
       modal.classList.remove('hidden');
       document.body.classList.add('overflow-hidden');
     }

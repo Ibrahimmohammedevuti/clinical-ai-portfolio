@@ -13,15 +13,51 @@ test('CV assets exist at both uploaded asset path and public fallback directorie
   assert.equal(fs.existsSync(publicCvPath), true, 'Public fallback CV PDF must exist');
 });
 
-test('index.html references the new CV PDF asset across all download and embed targets', () => {
+test('index.html references the CV PDF asset and zero-404 print fallback handlers', () => {
   const htmlPath = path.resolve(process.cwd(), 'index.html');
   const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
-  // Verify all CV download buttons, iframe and fetch call point to the new CV asset
-  const expectedAsset = '/assets/aistudio/Ibrahim_Mohammed_-_Clinical_AI_CV_595df32d.pdf';
-  assert.match(htmlContent, new RegExp(`href="${expectedAsset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
-  assert.match(htmlContent, new RegExp(`data-src="${expectedAsset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
-  assert.match(htmlContent, new RegExp(`fetch\\('${expectedAsset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}'`));
+  // Verify Hero CV buttons
+  assert.match(htmlContent, /id="hero-download-cv-btn"/);
+  assert.match(htmlContent, /href="\.\/Ibrahim_Mohammed_Clinical_AI_CV\.pdf"/);
+  assert.match(htmlContent, /download="Dr_Ibrahim_Mohammed_Clinical_AI_CV\.pdf"/);
+  assert.match(htmlContent, /Download CV \(PDF\)/);
+  assert.match(htmlContent, /View CV Online/);
+
+  // Verify fetch checks local PDF for zero-404 guarantee
+  assert.match(htmlContent, /fetch\('\.\/Ibrahim_Mohammed_Clinical_AI_CV\.pdf', \{ method: 'HEAD' \}\)/);
+  assert.match(htmlContent, /triggerPrintCvFallback/);
+  assert.match(htmlContent, /@media print/);
+});
+
+test('index.html includes all 5 Clinical AI repositories with live app and GitHub links', () => {
+  const htmlPath = path.resolve(process.cwd(), 'index.html');
+  const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+
+  // 1. ClinRLHF Workbench
+  assert.match(htmlContent, /ClinRLHF Workbench: Medical LLM Evaluation & Hallucination Auditor/);
+  assert.match(htmlContent, /href="https:\/\/ibrahimmohammedevuti\.github\.io\/clin-rlhf-workbench\/"/);
+  assert.match(htmlContent, /href="https:\/\/github\.com\/ibrahimmohammedevuti\/clin-rlhf-workbench"/);
+
+  // 2. FHIR-Structurer
+  assert.match(htmlContent, /FHIR-Structurer: Few-Shot Clinical NLP & Ontology Engine/);
+  assert.match(htmlContent, /href="https:\/\/ibrahimmohammedevuti\.github\.io\/fhir-clinical-structurer\/"/);
+  assert.match(htmlContent, /href="https:\/\/github\.com\/ibrahimmohammedevuti\/fhir-clinical-structurer"/);
+
+  // 3. GlucoKetone AI
+  assert.match(htmlContent, /GlucoKetone AI: Continuous CGM\/CKM Telemetry & DKA Triage Copilot/);
+  assert.match(htmlContent, /href="https:\/\/ibrahimmohammedevuti\.github\.io\/cgm-dka-telemetry-copilot\/"/);
+  assert.match(htmlContent, /href="https:\/\/github\.com\/ibrahimmohammedevuti\/cgm-dka-telemetry-copilot"/);
+
+  // 4. MedRedTeam
+  assert.match(htmlContent, /MedRedTeam: ACLS\/PALS & Acute Triage Adversarial Sandbox/);
+  assert.match(htmlContent, /href="https:\/\/ibrahimmohammedevuti\.github\.io\/acls-triage-redteam-sandbox\/"/);
+  assert.match(htmlContent, /href="https:\/\/github\.com\/ibrahimmohammedevuti\/acls-triage-redteam-sandbox"/);
+
+  // 5. ClinGuard
+  assert.match(htmlContent, /ClinGuard: HIPAA Safe Harbor PHI De-Identification & Prompt Firewall/);
+  assert.match(htmlContent, /href="https:\/\/ibrahimmohammedevuti\.github\.io\/phi-deidentifier-prompt-guard\/"/);
+  assert.match(htmlContent, /href="https:\/\/github\.com\/ibrahimmohammedevuti\/phi-deidentifier-prompt-guard"/);
 });
 
 test('index.html contains background verification, standards bar, and RLHF teardown proof of work', () => {
