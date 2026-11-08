@@ -3,12 +3,25 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-test('CV assets exist at both relative root and public directories', () => {
+test('CV assets exist at both uploaded asset path and public fallback directories', () => {
+  const assetCvPath = path.resolve(process.cwd(), 'public/assets/aistudio/Ibrahim_Mohammed_-_Clinical_AI_CV_595df32d.pdf');
   const rootCvPath = path.resolve(process.cwd(), 'Ibrahim_Mohammed_Clinical_AI_CV.pdf');
   const publicCvPath = path.resolve(process.cwd(), 'public/Ibrahim_Mohammed_Clinical_AI_CV.pdf');
   
-  assert.equal(fs.existsSync(rootCvPath), true, 'Root CV PDF must exist');
-  assert.equal(fs.existsSync(publicCvPath), true, 'Public CV PDF must exist');
+  assert.equal(fs.existsSync(assetCvPath), true, 'Uploaded CV PDF asset must exist in public/assets/aistudio');
+  assert.equal(fs.existsSync(rootCvPath), true, 'Root fallback CV PDF must exist');
+  assert.equal(fs.existsSync(publicCvPath), true, 'Public fallback CV PDF must exist');
+});
+
+test('index.html references the new CV PDF asset across all download and embed targets', () => {
+  const htmlPath = path.resolve(process.cwd(), 'index.html');
+  const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+
+  // Verify all CV download buttons, iframe and fetch call point to the new CV asset
+  const expectedAsset = '/assets/aistudio/Ibrahim_Mohammed_-_Clinical_AI_CV_595df32d.pdf';
+  assert.match(htmlContent, new RegExp(`href="${expectedAsset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
+  assert.match(htmlContent, new RegExp(`data-src="${expectedAsset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
+  assert.match(htmlContent, new RegExp(`fetch\\('${expectedAsset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}'`));
 });
 
 test('index.html contains background verification, standards bar, and RLHF teardown proof of work', () => {
